@@ -1,0 +1,5 @@
+.vagrant/
+/storage
+**/vendor
+**/node_modules
+.idea/*

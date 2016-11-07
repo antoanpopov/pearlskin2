@@ -1,0 +1,21 @@
+//COLOR PALETTE
+$color-white: #fff;
+$color-creme: #f5f4f3;
+$color-primary: #2acd35;
+$color-gray-dker: #222426;
+$color-gray-dk: #2e3134;
+$color-gray-lt: #888;
+$color-gray-lter: #e1e2e4;
+$color-gray: #444444;
+
+.color-primary { color: $color-primary; }
+.bg-creme { background-color: $color-creme !important;}
+.bg-primary { background-color: $color-primary !important; }
+
+//FONTS
+@import 'https://fonts.googleapis.com/css?family=Neucha';
+$font-family-headings: 'Neucha', cursive;
+
+.font-heading {
+  font-family: $font-family-headings;
+}

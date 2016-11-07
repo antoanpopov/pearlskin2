@@ -1,0 +1,29 @@
+{
+  "name": "Pearlskin",
+  "version": "1.0.0",
+  "description": "Pearlskin Theme - frontend",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "/resources/vendor",
+    "test",
+    "tests",
+    "bower_components",
+    "resources/vendor"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.9.1",
+    "bootstrap": "~3.3.2",
+    "font-awesome": "~4.3.0",
+    "bootstrap-sass": "boostrap-sass#^3.3.7",
+    "Swiper": "swiper#^3.3.1",
+    "parallax.js": "^1.4.2"
+  },
+  "homepage": "https://github.com/cowwando/pearlskin-laravel5.1",
+  "authors": [
+    "Antoan Popov <cowwando@gmail.com>"
+  ],
+  "main": ""
+}

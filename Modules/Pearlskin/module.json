@@ -1,0 +1,16 @@
+{
+    "name": "Pearlskin",
+    "alias": "pearlskin",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 1,
+    "providers": [
+        "Modules\\Pearlskin\\Providers\\PearlskinServiceProvider",
+        "Modules\\Pearlskin\\Providers\\RouteServiceProvider"
+    ],
+    "aliases":{},
+    "files": [
+        "macros.php"
+    ]
+}

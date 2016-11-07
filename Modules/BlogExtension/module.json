@@ -1,0 +1,16 @@
+{
+    "name": "BlogExtension",
+    "alias": "blogextension",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 1,
+    "providers": [
+        "Modules\\BlogExtension\\Providers\\BlogExtensionServiceProvider",
+        "Modules\\BlogExtension\\Providers\\RouteServiceProvider"
+    ],
+    "aliases":{},
+    "files": [
+        
+    ]
+}

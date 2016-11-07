@@ -1,0 +1,8 @@
+{
+  "srcDir": "Themes/Pearlskin",
+  "assetsPath": "resources/assets/",
+  "publicPath": "assets/",
+  "cssOutput": "assets/css/",
+  "jsOutput": "assets/js/",
+  "bowerDir": "resources/vendor/"
+}
