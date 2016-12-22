@@ -9,14 +9,14 @@
 @stop
 
 @section('content')
-    @include('partials.page-title',array(
-        'title' => $doctor->names,
-        'image' => $doctor->files()->where('zone', 'image')->get()[0]->path->getUrl()
-    ))
     <div class="container content">
         <div class="row">
             <div class="col-md-9 col-xs-12">
-            {!! $doctor->description !!}
+                @include('partials.subpage-title',array(
+        'title' => $doctor->names,
+        'image' => $doctor->files()->where('zone', 'image')->get()[0]->path->getUrl()
+    ))
+                {!! $doctor->description !!}
             </div>
             <div class="col-md-3 col-xs-12">
                 <aside>

@@ -15,7 +15,7 @@ class EloquentCommentRepository extends EloquentBaseRepository implements Commen
      */
     public function find($id)
     {
-        return $this->model->with('translations')->find($id);
+        return $this->model->find($id);
     }
 
     /**
@@ -23,7 +23,7 @@ class EloquentCommentRepository extends EloquentBaseRepository implements Commen
      */
     public function all()
     {
-        return $this->model->with('translations')->orderBy('created_at', 'DESC')->get();
+        return $this->model->orderBy('created_at', 'DESC')->get();
     }
 
     /**
@@ -54,22 +54,6 @@ class EloquentCommentRepository extends EloquentBaseRepository implements Commen
     public function destroy($model)
     {
         return $model->delete();
-    }
-
-    /**
-     * Return all resources in the given language
-     *
-     * @param  string $lang
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function allTranslatedIn($lang)
-    {
-        return $this->model->whereHas('translations', function (Builder $q) use ($lang) {
-            $q->where('locale', "$lang");
-            $q->where('title', '!=', '');
-        })->with('translations')
-        ->orderBy('created_at', 'DESC')
-        ->get();
     }
 
 

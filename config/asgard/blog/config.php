@@ -26,7 +26,7 @@ return [
             'normal' => [
                 'create' => [],
                 'edit' => [
-                    'blogextension::admin.comments.index',
+                    'blogextension::admin.comments.extension',
                 ],
             ],
         ],
@@ -37,6 +37,9 @@ return [
         | Add relations that will be dynamically added to the Post entity
         */
         'relations' => [
+            'parentComments' => function ($self) {
+                return $self->hasMany(\Modules\BlogExtension\Entities\Comment::class, 'blog_post_id', 'id')->whereNull('comment_parent_id')->get();
+            },
             'comments' => function ($self) {
                 return $self->hasMany(\Modules\BlogExtension\Entities\Comment::class, 'blog_post_id', 'id')->get();
             },

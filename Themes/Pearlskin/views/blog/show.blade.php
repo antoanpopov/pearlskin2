@@ -40,31 +40,42 @@
                 </div>
             </div>
             <div class="row">
-                <h4 class="color-primary">{{ trans('blogextension::common.comments') }}({{ count($post->comments()) }})</h4>
-                @foreach($post->comments() as $comment)
-                    <div class="col-md-1">
-                        <img src="http://1.gravatar.com/avatar/afaa67c22b665e854fa5790c02a57866?s=65&d=mm&r=g"/>
+                <h3 class="color-primary font-heading">{{ trans('blogextension::core.write comment') }}</h3>
+                {!! Form::open(['route' => ['admin.pearlskin.procedure.store'], 'method' => 'post','class' => 'row']) !!}
+                <div class="col-xs-12 col-md-6">
+                    <div class='input-group {{ $errors->has("name") ? ' has-error' : '' }}'>
+                <span class="input-group-addon">
+                    <i class="fa fa-user"></i>
+                </span>
+                        {!! Form::text("name", old("comment.name"), ['class' => 'form-control', 'placeholder' => trans('pearlskin::common.form.name')]) !!}
+                        {!! $errors->first("name", '<span class="help-block">:message</span>') !!}
                     </div>
-                    <div class="col-md-11">
-                        <div class="row">
-                        <span class="pull-left color-primary">
-                            {{ $comment->nickname }}
-                            @if($comment->email !== null)
-                                , {{ $comment->email }}
-                            @endif
-                        </span>
-                            <a href="#" class="pull-right color-primary">{{ trans('blogextension::common.reply') }}</a>
-                            <span class="pull-right">{{ $comment->created_at }} | </span>
-
-                        </div>
-                        <div class="row">
-                            <p>
-                                {{ $comment->comment_text }}
-                            </p>
-                        </div>
-
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class='input-group {{ $errors->has("email") ? ' has-error' : '' }}'>
+                <span class="input-group-addon">
+                    <i class="fa fa-envelope"></i>
+                </span>
+                        {!! Form::text("email", old("comment.email"), ['class' => 'form-control', 'placeholder' => trans('pearlskin::common.form.email')]) !!}
+                        {!! $errors->first("email", '<span class="help-block">:message</span>') !!}
                     </div>
-                @endforeach
+                </div>
+                <div class="col-sm-12">
+                    {!! Form::textarea('message', old('comment.message', null),[
+                    'class' => 'form-control',
+                    'rows' => '3',
+                    'placeholder' => trans('pearlskin::common.form.message'),
+                    'cols' => 10,
+                    'maxlength' => setting('blog::comment-length')
+                    ]) !!}
+                </div>
+                {!! Form::close() !!}
+            </div>
+            <div class="row">
+                <h4 class="color-primary font-heading">{{ trans('blogextension::core.comments') }} ({{ count($post->comments())}})</h4>
+                <ul class="comment-list">
+                    @each('partials.blog.comment',$post->parentComments(), 'comment')
+                </ul>
             </div>
             <p>
                 <?php if ($previous = $post->present()->previous): ?>

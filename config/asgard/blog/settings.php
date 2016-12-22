@@ -11,6 +11,11 @@ return [
         'view'         => 'text',
         'translatable' => false,
     ],
+    'comment-length' => [
+        'description'  => 'blogextension::core.comment length',
+        'view'         => 'text',
+        'translatable' => false,
+    ],
     'widget-posts-amount' => [
         'description' => 'blog::settings.widget-posts-amount',
         'view' => 'text',

@@ -32,7 +32,6 @@
                     <h3>{{ $emailMessage->message_subject }}</h3>
                     <p><strong>{{ $emailMessage->sender_names }}</strong>
                         <small>{{ $emailMessage->sender_email }}</small>
-
                     </p>
                     <blockquote>
                         <p>{{ $emailMessage->message_text }}</p>
@@ -51,7 +50,7 @@
                             <i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
                     </div>
                 </div>
-            </div>  end nav-tabs-custom
+            </div>
         </div>
     </div>
     {!! Form::close() !!}

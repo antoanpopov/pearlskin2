@@ -120,6 +120,8 @@ class SentinelUserRepository implements UserRepository
      */
     public function update($user, $data)
     {
+        $this->checkForNewPassword($data);
+
         $user->fill($data);
 
         event(new UserIsUpdating($user));
@@ -169,7 +171,7 @@ class SentinelUserRepository implements UserRepository
     {
         if ($user = $this->user->find($id)) {
             return $user->delete();
-        };
+        }
 
         throw new UserNotFoundException();
     }
@@ -200,7 +202,7 @@ class SentinelUserRepository implements UserRepository
      */
     private function checkForNewPassword(array &$data)
     {
-        if (! $data['password']) {
+        if (array_key_exists('password', $data) && ($data['password'] === '' || $data['password'] === null)) {
             unset($data['password']);
 
             return;

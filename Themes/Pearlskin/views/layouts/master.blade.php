@@ -30,24 +30,10 @@
 
     {{--{!! Theme::script('js/all.js') !!}--}}
 
-    <script>
-        var swiper = new Swiper('.swiper-container', {
-            pagination: '.swiper-pagination',
-            nextButton: '.swiper-button-next',
-            prevButton: '.swiper-button-prev',
-            paginationClickable: true,
-            spaceBetween: 0,
-            centeredSlides: true,
-            autoplay: 4000,
-            speed: 1000,
-            autoplayDisableOnInteraction: false,
-            effect: 'fade'
-        });
-    </script>
     @yield('scripts')
 
     <?php if (Setting::has('core::google-analytics')): ?>
-    {!! Setting::get('core::google-analytics') !!}
+    {!! setting('core::google-analytics') !!}
     <?php endif; ?>
 </div>
 </body>

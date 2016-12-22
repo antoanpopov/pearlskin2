@@ -28,3 +28,19 @@
         <div class="swiper-scrollbar"></div>
     </div>
 @endif
+@section('scripts')
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            paginationClickable: true,
+            spaceBetween: 0,
+            centeredSlides: true,
+            autoplay: 4000,
+            speed: 1000,
+            autoplayDisableOnInteraction: false,
+            effect: 'fade'
+        });
+    </script>
+@endsection

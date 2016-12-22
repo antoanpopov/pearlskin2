@@ -13,11 +13,11 @@ class EloquentEmailMessageRepository extends EloquentBaseRepository implements E
      */
     public function countUnread()
     {
-        return $this->model->where('is_read',0)->count();
+        return $this->model->whereNull('parent_email_message_id')->where('is_read',0)->count();
     }
 
     public function countUnreadReplies(EmailMessage $emailMessage){
-        return $this->model->replies()->where('is_read',0)->count();
+        return $this->model->replies()->where('is_read',0)->where('parent_email_id')->count();
     }
 
     /**

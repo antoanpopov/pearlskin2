@@ -40,8 +40,10 @@ class SidebarExtender implements \Maatwebsite\Sidebar\SidebarExtender
                 $item->weight(3);
                 $item->icon('fa fa-envelope');
                 $item->badge(function (Badge $badge, EmailMessageRepository $emailMessageRepository) {
-                    $badge->setClass('bg-green');
-                    $badge->setValue($emailMessageRepository->countUnread());
+                    $badge->setClass('pulsating-badge');
+                    if($emailMessageRepository->countUnread()){
+                        $badge->setValue($emailMessageRepository->countUnread());
+                    }
                 });
                 $item->route('admin.pearlskin.email.index');
                 $item->authorize(

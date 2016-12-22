@@ -56,9 +56,15 @@ class EmailController extends AdminBaseController
      */
     public function reply(EmailMessage $emailMessage)
     {
-        if(!$emailMessage->is_read){
-            $this->emailMessageRepository->update($emailMessage,['is_read' => true]);
 
+        if (!$emailMessage->is_read) {
+            $this->emailMessageRepository->update($emailMessage, ['is_read' => true]);
+        }
+        
+        foreach ($emailMessage->replies as $reply){
+            if(!$reply->is_read){
+                $this->emailMessageRepository->update($reply,['is_read' => true]);
+            }
         }
 
         $replyEmail = new EmailMessage();

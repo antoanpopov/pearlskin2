@@ -20,7 +20,7 @@ class CreateBlogCommentsTable extends Migration {
             $table->string('nickname',64);
             $table->string('email',128);
             $table->text('comment_text');
-            $table->boolean('is_active')->default(1);
+            $table->boolean('is_approved')->default(1);
             $table->timestamps();
 
             $table->foreign('blog_post_id')->references('id')->on('blog__posts')->onDelete('cascade')->onUpdate('cascade');

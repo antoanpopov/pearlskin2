@@ -8,10 +8,10 @@ use Modules\Blog\Entities\Post;
 class Comment extends Model
 {
     protected $table = 'blog__comments';
-    protected $fillable = ['nickname', 'email', 'comment_text', 'blog_post_id', 'comment_parent_id', 'is_active'];
+    protected $fillable = ['nickname', 'email', 'comment_text', 'blog_post_id', 'comment_parent_id', 'is_approved'];
 
     protected $casts = [
-        'is_visible' => 'boolean',
+        'is_approved' => 'boolean',
     ];
     
     protected $dates = ['created_at', 'updated_at'];

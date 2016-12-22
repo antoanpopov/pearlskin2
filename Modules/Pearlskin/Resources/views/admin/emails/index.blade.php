@@ -40,13 +40,13 @@
                         <tbody>
                         <?php if (isset($emails)): ?>
                         <?php foreach ($emails as $email): ?>
-                        <tr class="<?= (!$email->is_read || $email->replies()->where('is_read', 0)->count() > 0) ? 'unread' : '' ?>">
+                        <tr class="<?= (!$email->is_read)? 'unread' : '' ?>">
                             <td>
                                 <a href="{{ URL::route('admin.pearlskin.email.reply', [$email->id]) }}">
                                     {{ $email->sender_names . " (".$email->sender_email.")" }}
                                 </a>
-                                @if($email->replies()->where('is_read',0)->count() > 0)
-                                    <span class="label label-success label-badge pull-right">{{ $email->replies()->where('is_read',0)->count() }}</span>
+                                @if(!$email->is_read)
+                                    <span class="label label-success label-badge pull-right">{{ trans('pearlskin::statuses.unread') }}</span>
                                 @endif
                             </td>
                             <td>
