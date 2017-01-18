@@ -18,7 +18,7 @@
 @section('content')
     {!! Form::open(['route' => ['admin.pearlskin.client.update', $client->id], 'method' => 'put']) !!}
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-col-xs-6 col-md-12">
             <div class="nav-tabs-custom">
                 <div class="tab-content">
                     @include('pearlskin::admin.clients.partials.edit-fields')

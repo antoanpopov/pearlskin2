@@ -32,3 +32,8 @@ if (App::getLocale('en')) {
         'uses' => 'ArticleController@article',
     ]);
 }
+
+$router->post('contact/ask-question', [
+    'as' => 'contact_us.ask_question',
+    'uses' => 'Frontend\EmailController@askQuestion',
+]);

@@ -27,7 +27,7 @@
                     <select class="form-control"
                             name="doctor_id">
                         @foreach($doctors as $doctor)
-                            <option value="{{ $doctor->id }}">{{ trans($doctor->names) }}</option>
+                            <option value="{{ $doctor->id }}">{{ $doctor->names }}</option>
                         @endforeach
                     </select>
                 </div>

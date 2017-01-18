@@ -5,6 +5,7 @@ namespace Modules\Pearlskin\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Pearlskin\Emails\QuestionAsked;
+use Modules\Pearlskin\Entities\Doctor;
 use Modules\Pearlskin\Entities\EmailMessage;
 use Modules\Pearlskin\Repositories\EmailMessageRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;

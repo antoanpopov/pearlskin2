@@ -2,22 +2,35 @@
 
 namespace Modules\Pearlskin\Http\Requests;
 
-use Modules\Core\Internationalisation\BaseFormRequest;
+use Illuminate\Foundation\Http\FormRequest;
 
-class AskQuestionEmailRequest extends BaseFormRequest
+class AskQuestionEmailRequest extends FormRequest
 {
     public function rules()
     {
         return [
-            'names' => 'required',
-            'email' => 'required',
-            'message' => 'required',
+            'name' => 'required|min:2|max:200',
+            'email' => 'required|min:4|max:200',
+            'message' => 'required|min:20|max:300',
         ];
     }
 
     public function authorize()
     {
-        return false;
+        return true;
     }
-    
+
+    public function attributes(){
+        return [
+            'name' => trans('pearlskin::common.form.name'),
+            'message' => trans('pearlskin::common.form.message'),
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => trans('pearlskin::validation.required')
+        ];
+    }
 }

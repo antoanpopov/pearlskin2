@@ -9,6 +9,7 @@ return [
         'nav-tab' => \Nwidart\Menus\Presenters\Bootstrap\NavTabPresenter::class,
         'sidebar' => \Nwidart\Menus\Presenters\Bootstrap\SidebarMenuPresenter::class,
         'navmenu' => \Nwidart\Menus\Presenters\Bootstrap\NavMenuPresenter::class,
+        'navbar-language-switcher' => \Modules\Pearlskin\Presenters\NavbarWithLanguageSwitcherPresenter::class,
     ],
 
     'ordering' => false,

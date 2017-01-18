@@ -30,7 +30,8 @@
         "idavoll/adminlte-theme": "~2.0",
         "asgardcms/blog-module": "2.*",
         "laracasts/flash": "^2.0",
-        "guzzlehttp/guzzle": "^6.2"
+        "guzzlehttp/guzzle": "^6.2",
+        "davejamesmiller/laravel-breadcrumbs": "^3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

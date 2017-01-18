@@ -46,7 +46,7 @@
                             </td>
                             <td>
                                 <a href="{{ route('admin.pearlskin.schedule.edit', [$schedule->id]) }}">
-                                    {{ trans($schedule->doctor->names) }}
+                                    {{ $schedule->doctor->names }}
                                 </a>
                             </td>
                             <td>

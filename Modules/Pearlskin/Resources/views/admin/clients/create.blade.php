@@ -18,7 +18,7 @@
 @section('content')
     {!! Form::open(['route' => ['admin.pearlskin.client.store'], 'method' => 'post']) !!}
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-sm-6 col-xs-12">
             <div class="nav-tabs-custom">
                 <div class="tab-content">
                     @include('pearlskin::admin.clients.partials.create-fields')

@@ -57,7 +57,7 @@
                             </td>
                             <td>
                                 <a href="{{ route('admin.pearlskin.client.edit', [$client->id]) }}">
-                                    {{ $client->dob }}
+                                    {{ \Carbon\Carbon::parse($client->dob)->format('d-m-Y') }}
                                 </a>
                             </td>
                             <td>

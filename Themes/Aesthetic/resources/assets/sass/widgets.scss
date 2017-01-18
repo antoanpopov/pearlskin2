@@ -1,0 +1,61 @@
+//Doctors Widget
+.widget-heading {
+  font-family: $font-family-headings;
+}
+.widget {
+
+  > ul {
+    list-style-type: none;
+    padding: 0;
+
+    > li {
+      margin-top: 15px;
+    }
+  }
+
+  .widget-title {
+    color: $color-primary;
+    font-weight: 400;
+    font-family: $font-family-headings;
+    font-style: normal;
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  .widget-caption {
+    line-height: 20px;
+    color: #888888;
+    font-size: 14px;
+  }
+
+  .widget-thumbnail {
+
+    overflow: hidden;
+    height: 105px;
+    margin-bottom: 10px;
+    position: relative;
+
+    > .thumbnail-bump {
+      position: absolute;
+      left: -46px;
+      bottom: -45px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: $color-white;
+    }
+
+    > .thumbnail-icon {
+      font-size: 25px;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      color: $color-primary;
+    }
+    > a > img {
+      height: auto;
+      width: 100%;
+
+    }
+  }
+}
