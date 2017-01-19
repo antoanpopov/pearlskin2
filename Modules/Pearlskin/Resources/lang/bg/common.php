@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'none' => 'Няма',
     'sidebar' => [
         'content' => 'Съдържание',
         'layout' => 'Шаблон',
@@ -36,6 +37,7 @@ return [
         'client' => 'Клиент',
         'doctor' => 'Доктор',
         'procedure' => 'Процедура',
+        'category' => 'Категория',
         'subject' => 'Тема',
         'sender' => 'Изпращащ',
         'price' => 'Цена',

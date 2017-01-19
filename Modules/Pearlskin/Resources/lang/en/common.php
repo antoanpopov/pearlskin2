@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'none' => 'None',
     'sidebar' => [
         'content' => 'Content',
         'layout' => 'Layout',
@@ -36,6 +37,7 @@ return [
         'client' => 'Client',
         'doctor' => 'Doctor',
         'procedure' => 'Procedure',
+        'category' => 'Category',
         'subject' => 'Subject',
         'sender' => 'Sender',
         'price' => 'Price',

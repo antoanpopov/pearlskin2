@@ -32,6 +32,7 @@
                         <tr>
                             <th>{{ trans('core::core.table.thumbnail') }}</th>
                             <th>{{ trans('pearlskin::common.form.name') }}</th>
+                            <th>{{ trans('pearlskin::common.statuses.is visible') }}</th>
                             <th>{{ trans('pearlskin::common.form.category') }}</th>
                             <th>{{ trans('pearlskin::common.form.price') }}</th>
                             <th>{{ trans('pearlskin::common.form.created at') }}</th>
@@ -43,8 +44,8 @@
                         <?php foreach ($procedures as $procedure): ?>
                         <tr>
                             <td>
-                                <?php if (count($procedure->files()->where('zone', 'image')->get())): ?>
-                                <img src="{{ Imagy::getThumbnail($procedure->files()->where('zone', 'image')->get()[0]->path, 'smallThumb') }}"
+                                <?php if (count($procedure->files()->where('zone', 'featured_image')->get())): ?>
+                                <img src="{{ Imagy::getThumbnail($procedure->files()->where('zone', 'featured_image')->get()[0]->path, 'smallThumb') }}"
                                      alt=""/>
                                 <?php else: ?>
                                 <i class="fa fa-file" style="font-size: 20px;"></i>
@@ -54,6 +55,13 @@
                                 <a href="{{ route('admin.pearlskin.procedure.edit', [$procedure->id]) }}">
                                     {{ $procedure->title }}
                                 </a>
+                            </td>
+                            <td>
+                                @if($procedure->is_visible)
+                                    <span class="label label-success">{{ trans('pearlskin::common.statuses.is visible') }}</span>
+                                @else
+                                    <span class="label label-danger">{{ trans('pearlskin::common.statuses.not visible') }}</span>
+                                @endif
                             </td>
                             <td>
                                 <a href="{{ route('admin.pearlskin.procedure.edit', [$procedure->id]) }}">
@@ -92,6 +100,7 @@
                         <tr>
                             <th>{{ trans('core::core.table.thumbnail') }}</th>
                             <th>{{ trans('pearlskin::common.form.name') }}</th>
+                            <th>{{ trans('pearlskin::common.statuses.is visible') }}</th>
                             <th>{{ trans('pearlskin::common.form.category') }}</th>
                             <th>{{ trans('pearlskin::common.form.price') }}</th>
                             <th>{{ trans('pearlskin::common.form.created at') }}</th>

@@ -29,7 +29,12 @@
                             @include('pearlskin::admin.procedures.partials.create-fields', ['lang' => $locale])
                         </div>
                     @endforeach
-                    {!! Form::normalInput('price', trans('pearlskin::common.form.price'), $errors) !!}
+                        <div class="col-xs-12 col-md-6">
+                            {!! Form::normalInput('price', trans('pearlskin::common.form.price'), $errors) !!}
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            {!! Form::normalCheckbox('is_visible', trans('pearlskin::common.form.is visible'), $errors) !!}
+                        </div>
                         @mediaSingle('featured_image')
                         @mediaMultiple('gallery')
                     <div class="box-footer">

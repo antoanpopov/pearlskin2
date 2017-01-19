@@ -32,22 +32,44 @@
                             @include('pearlskin::admin.procedures.partials.edit-fields', ['lang' => $locale])
                         </div>
                     @endforeach
-                    {!! Form::normalInput('price', trans('pearlskin::common.form.price'), $errors, $procedure) !!}
-                        @mediaSingle('featured_image', $procedure)
-                        @mediaMultiple('gallery', $procedure)
-                    </div>
-                    <div class="box-footer">
-                        <button type="submit"
-                                class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
-                        <button class="btn btn-default btn-flat" name="button"
-                                type="reset">{{ trans('core::core.button.reset') }}</button>
-                        <a class="btn btn-danger pull-right btn-flat"
-                           href="{{ route('admin.pearlskin.procedure.index')}}"><i
-                                    class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-4">
+                            <div class="form-group">
+                                {!! Form::label("procedure_cat_id", trans('pearlskin::common.form.procedure category')) !!}
+                                <select name="procedure_cat_id" id="procedure_cat_id" class="form-control">
+                                    @foreach ($procedureCategories as $procedureCategory)
+                                        <option value="{{ $procedureCategory->id }}" {{ old('procedure_cat_id', $procedure->procedure_cat_id) == $procedureCategory->id ? 'selected' : '' }}>
+                                            {{ $procedureCategory->title }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-4">
+                            {!! Form::normalInput('price', trans('pearlskin::common.form.price'), $errors, $procedure) !!}
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            {!! Form::normalCheckbox('is_visible', trans('pearlskin::common.statuses.is visible'), $errors, $procedure) !!}
+                        </div>
+                        <div class="col-xs-12">
+                            @mediaSingle('featured_image', $procedure)
+
+                            @mediaMultiple('gallery', $procedure)
+                        </div>
                     </div>
                 </div>
-            </div> {{-- end nav-tabs-custom --}}
-        </div>
+                <div class="box-footer">
+                    <button type="submit"
+                            class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
+                    <button class="btn btn-default btn-flat" name="button"
+                            type="reset">{{ trans('core::core.button.reset') }}</button>
+                    <a class="btn btn-danger pull-right btn-flat"
+                       href="{{ route('admin.pearlskin.procedure.index')}}"><i
+                                class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
+                </div>
+            </div>
+        </div> {{-- end nav-tabs-custom --}}
     </div>
     {!! Form::close() !!}
 @stop

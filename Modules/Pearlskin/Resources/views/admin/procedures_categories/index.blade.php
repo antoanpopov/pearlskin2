@@ -30,7 +30,7 @@
                         <tr>
                             <th>{{ trans('core::core.table.thumbnail') }}</th>
                             <th>{{ trans('pearlskin::common.form.name') }}</th>
-                            <th>{{ trans('pearlskin::common.form.price') }}</th>
+                            <th>{{ trans('pearlskin::common.statuses.is visible') }}</th>
                             <th>{{ trans('pearlskin::common.form.created at') }}</th>
                             <th data-sortable="false">{{ trans('pearlskin::common.form.actions') }}</th>
                         </tr>
@@ -52,9 +52,11 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ route('admin.pearlskin.procedure.edit', [$procedure->id]) }}">
-                                    {{ $procedure->price }}
-                                </a>
+                                @if($procedure->is_visible)
+                                    <span class="label label-success">{{ trans('pearlskin::common.statuses.is visible') }}</span>
+                                @else
+                                    <span class="label label-danger">{{ trans('pearlskin::common.statuses.not visible') }}</span>
+                                @endif
                             </td>
                             <td>
                                 <a href="{{ route('admin.pearlskin.procedure.edit', [$procedure->id]) }}">
@@ -75,7 +77,7 @@
                         <tr>
                             <th>{{ trans('core::core.table.thumbnail') }}</th>
                             <th>{{ trans('pearlskin::common.form.name') }}</th>
-                            <th>{{ trans('pearlskin::common.form.price') }}</th>
+                            <th>{{ trans('pearlskin::common.statuses.is visible') }}</th>
                             <th>{{ trans('pearlskin::common.form.created at') }}</th>
                             <th>{{ trans('pearlskin::common.form.actions') }}</th>
                         </tr>

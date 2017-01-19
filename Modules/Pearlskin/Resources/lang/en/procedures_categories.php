@@ -7,7 +7,7 @@ return [
     'destroy resource' => 'Destroy procedures categoriess',
 
     'title' => [
-        'procedures categoriess' => 'Procedures Categories',
+        'procedures categories' => 'Procedures Categories',
         'create procedures categories' => 'Create procedures categories',
         'edit procedures categories' => 'Edit procedures categories',
     ],
