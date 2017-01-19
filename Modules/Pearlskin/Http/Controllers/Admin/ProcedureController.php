@@ -4,21 +4,29 @@ use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 use Modules\Media\Repositories\FileRepository;
 use Modules\Pearlskin\Entities\Procedure;
-use Modules\Pearlskin\Repositories\ProcedureRepository;
+use Modules\Pearlskin\Repositories;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 
 class ProcedureController extends AdminBaseController
 {
     /**
-     * @var ProcedureRepository
+     * @var Repositories\ProcedureRepository
      */
     private $procedure;
+    /**
+     * @var Repositories\ProcedureCategoryRepository
+     */
+    private $procedureCategoryRepository;
 
-    public function __construct(ProcedureRepository $procedure)
+    public function __construct(
+        Repositories\ProcedureRepository $procedure,
+        Repositories\ProcedureCategoryRepository $procedureCategoryRepository
+    )
     {
         parent::__construct();
 
         $this->procedure = $procedure;
+        $this->procedureCategoryRepository = $procedureCategoryRepository;
     }
 
     /**
@@ -33,14 +41,11 @@ class ProcedureController extends AdminBaseController
         return view('pearlskin::admin.procedures.index', compact('procedures'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
+
     public function create()
     {
-        return view('pearlskin::admin.procedures.create');
+        $procedureCategories = $this->procedureCategoryRepository->all();
+        return view('pearlskin::admin.procedures.create')->with(compact('procedureCategories'));
     }
 
     /**
@@ -52,8 +57,8 @@ class ProcedureController extends AdminBaseController
     public function store(Request $request)
     {
         $requestData = $request->all();
-        $request->all()['created_by_user_id']= $request->user()->id;
-        $request->all()['updated_by_user_id']= $request->user()->id;
+        $request->all()['created_by_user_id'] = $request->user()->id;
+        $request->all()['updated_by_user_id'] = $request->user()->id;
         $this->procedure->create($requestData);
 
         flash()->success(trans('core::core.messages.resource created', ['name' => trans('pearlskin::procedures.title.procedures')]));
@@ -62,23 +67,19 @@ class ProcedureController extends AdminBaseController
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  Procedure $procedure
-     * @return Response
+     * @param Procedure $procedure
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Procedure $procedure, FileRepository $fileRepository)
+    public function edit(Procedure $procedure)
     {
-        $image = $fileRepository->findFileByZoneForEntity('image', $procedure);
-        return view('pearlskin::admin.procedures.edit', compact('procedure', 'image'));
+        $procedureCategories = $this->procedureCategoryRepository->all();
+        return view('pearlskin::admin.procedures.edit', compact('procedure', 'procedureCategories'));
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  Procedure $procedure
-     * @param  Request $request
-     * @return Response
+     * @param Procedure $procedure
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Procedure $procedure, Request $request)
     {

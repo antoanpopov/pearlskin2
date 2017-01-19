@@ -55,7 +55,7 @@ class ProcedureCategoryController extends AdminBaseController
         $request->all()['updated_by_user_id']= $request->user()->id;
         $this->procedureCategoryRepository->create($requestData);
 
-        flash()->success(trans('core::core.messages.resource created', ['name' => trans('pearlskin::procedures_categories.title.procedure categories')]));
+        flash()->success(trans('core::core.messages.resource created', ['name' => trans('pearlskin::procedures.title.procedures')]));
 
         return redirect()->route('admin.pearlskin.procedures_categories.index');
     }
@@ -72,28 +72,29 @@ class ProcedureCategoryController extends AdminBaseController
         return view('pearlskin::admin.procedures_categories.edit', compact('procedure_category', 'image'));
     }
 
-    /**
-     * @param ProcedureCategory $procedureCategory
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
     public function update(ProcedureCategory $procedureCategory, Request $request)
     {
         $procedureCategory->updated_by_user_id = $request->user()->id;
         $this->procedureCategoryRepository->update($procedureCategory, $request->all());
 
-        flash()->success(trans('core::core.messages.resource updated', ['name' => trans('pearlskin::procedures_categories.title.procedure categories')]));
+        flash()->success(trans('core::core.messages.resource updated', ['name' => trans('pearlskin::procedures.title.procedures')]));
 
-        return redirect()->route('admin.pearlskin.procedures_categories.index');
+        return redirect()->route('admin.pearlskin.procedure.index');
     }
 
-
-    public function destroy(ProcedureCategory $procedure)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  Procedure $procedure
+     * @return Response
+     */
+    public function destroy(Procedure $procedure)
     {
-        $this->procedureCategoryRepository->destroy($procedure);
+        $this->procedure->destroy($procedure);
 
-        flash()->success(trans('core::core.messages.resource deleted', ['name' => trans('pearlskin::procedures_categories.title.procedure categories')]));
+        flash()->success(trans('core::core.messages.resource deleted', ['name' => trans('pearlskin::procedures.title.procedures')]));
 
-        return redirect()->route('admin.pearlskin.procedures_categories.index');
+        return redirect()->route('admin.pearlskin.procedure.index');
     }
 }
