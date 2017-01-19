@@ -19,6 +19,12 @@ return [
         'edit' => 'pearlskin::procedures.edit resource',
         'destroy' => 'pearlskin::procedures.destroy resource',
     ],
+    'pearlskin.procedures_categories' => [
+        'index' => 'pearlskin::procedures_categories.list resource',
+        'create' => 'pearlskin::procedures_categories.create resource',
+        'edit' => 'pearlskin::procedures_categories.edit resource',
+        'destroy' => 'pearlskin::procedures_categories.destroy resource',
+    ],
     'pearlskin.manipulations' => [
         'index' => 'pearlskin::manipulations.list resource',
         'create' => 'pearlskin::manipulations.create resource',

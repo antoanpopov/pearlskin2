@@ -5,8 +5,7 @@
         {{ trans('pearlskin::procedures.title.procedures') }}
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('dashboard.index') }}"><i
-                        class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
+        <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
         <li class="active">{{ trans('pearlskin::procedures.title.procedures') }}</li>
     </ol>
 @stop
@@ -16,8 +15,7 @@
         <div class="col-xs-12">
             <div class="row">
                 <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
-                    <a href="{{ route('admin.pearlskin.procedure.create') }}" class="btn btn-primary btn-flat"
-                       style="padding: 4px 10px;">
+                    <a href="{{ route('admin.pearlskin.procedure.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
                         <i class="fa fa-pencil"></i> {{ trans('pearlskin::procedures.button.create procedure') }}
                     </a>
                 </div>
@@ -32,7 +30,6 @@
                         <tr>
                             <th>{{ trans('core::core.table.thumbnail') }}</th>
                             <th>{{ trans('pearlskin::common.form.name') }}</th>
-                            <th>{{ trans('pearlskin::common.form.category') }}</th>
                             <th>{{ trans('pearlskin::common.form.price') }}</th>
                             <th>{{ trans('pearlskin::common.form.created at') }}</th>
                             <th data-sortable="false">{{ trans('pearlskin::common.form.actions') }}</th>
@@ -44,8 +41,7 @@
                         <tr>
                             <td>
                                 <?php if (count($procedure->files()->where('zone', 'image')->get())): ?>
-                                <img src="{{ Imagy::getThumbnail($procedure->files()->where('zone', 'image')->get()[0]->path, 'smallThumb') }}"
-                                     alt=""/>
+                                <img src="{{ Imagy::getThumbnail($procedure->files()->where('zone', 'image')->get()[0]->path, 'smallThumb') }}" alt=""/>
                                 <?php else: ?>
                                 <i class="fa fa-file" style="font-size: 20px;"></i>
                                 <?php endif; ?>
@@ -53,15 +49,6 @@
                             <td>
                                 <a href="{{ route('admin.pearlskin.procedure.edit', [$procedure->id]) }}">
                                     {{ $procedure->title }}
-                                </a>
-                            </td>
-                            <td>
-                                <a href="{{ route('admin.pearlskin.procedure.edit', [$procedure->id]) }}">
-                                    @if($procedure->category)
-                                        {{ $procedure->category->name }}
-                                    @else
-                                        {{ trans('pearlskin::common.none') }}
-                                    @endif
                                 </a>
                             </td>
                             <td>
@@ -76,12 +63,8 @@
                             </td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('admin.pearlskin.procedure.edit', [$procedure->id]) }}"
-                                       class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
-                                    <button class="btn btn-danger btn-flat" data-toggle="modal"
-                                            data-target="#modal-delete-confirmation"
-                                            data-action-target="{{ route('admin.pearlskin.procedure.destroy', [$procedure->id]) }}">
-                                        <i class="fa fa-trash"></i></button>
+                                    <a href="{{ route('admin.pearlskin.procedure.edit', [$procedure->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
+                                    <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.pearlskin.procedure.destroy', [$procedure->id]) }}"><i class="fa fa-trash"></i></button>
                                 </div>
                             </td>
                         </tr>
@@ -92,7 +75,6 @@
                         <tr>
                             <th>{{ trans('core::core.table.thumbnail') }}</th>
                             <th>{{ trans('pearlskin::common.form.name') }}</th>
-                            <th>{{ trans('pearlskin::common.form.category') }}</th>
                             <th>{{ trans('pearlskin::common.form.price') }}</th>
                             <th>{{ trans('pearlskin::common.form.created at') }}</th>
                             <th>{{ trans('pearlskin::common.form.actions') }}</th>
@@ -120,10 +102,10 @@
 
 @section('scripts')
     <script type="text/javascript">
-        $(document).ready(function () {
+        $( document ).ready(function() {
             $(document).keypressAction({
                 actions: [
-                    {key: 'c', route: "<?= route('admin.pearlskin.procedure.create') ?>"}
+                    { key: 'c', route: "<?= route('admin.pearlskin.procedure.create') ?>" }
                 ]
             });
         });
@@ -138,7 +120,7 @@
                 "sort": true,
                 "info": true,
                 "autoWidth": true,
-                "order": [[0, "desc"]],
+                "order": [[ 0, "desc" ]],
                 "language": {
                     "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
                 }

@@ -4,19 +4,18 @@ use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Media\Support\Traits\MediaRelation;
 
-class Procedure extends Model
+class ProcedureCategory extends Model
 {
     use Translatable,
         MediaRelation;
 
-    protected $table = 'pearlskin__procedures';
+    protected $table = 'pearlskin__procedures_cats';
     public $translatedAttributes = ['title', 'description'];
     protected $fillable = [
-        'price',
         'created_by_user_id',
         'updated_by_user_id',
-        'procedure_cat_id',
         'is_visible',
+        'sort_order',
         // Translatable fields
         'title',
         'description',

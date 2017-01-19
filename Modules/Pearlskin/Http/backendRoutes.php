@@ -103,6 +103,46 @@ $router->group(['prefix' =>'/pearlskin'], function (Router $router) {
         'uses' => 'ProcedureController@destroy',
         'middleware' => 'can:pearlskin.procedures.destroy'
     ]);
+
+    /**
+     * Procedure Categories routes
+     */
+    $router->bind('procedure-category', function ($id) {
+        return app('Modules\Pearlskin\Repositories\ProcedureCategoryRepository')->find($id);
+    });
+    $router->get('procedures-categories', [
+        'as' => 'admin.pearlskin.procedures_categories.index',
+        'uses' => 'ProcedureCategoryController@index',
+        'middleware' => 'can:pearlskin.procedures_categories.index'
+    ]);
+    $router->get('procedures-categories/create', [
+        'as' => 'admin.pearlskin.procedures_categories.create',
+        'uses' => 'ProcedureCategoryController@create',
+        'middleware' => 'can:pearlskin.procedures_categories.create'
+    ]);
+    $router->post('procedures-categories', [
+        'as' => 'admin.pearlskin.procedures_categories.store',
+        'uses' => 'ProcedureCategoryController@store',
+        'middleware' => 'can:pearlskin.procedures_categories.create'
+    ]);
+    $router->get('procedures-categories/{procedure}/edit', [
+        'as' => 'admin.pearlskin.procedures_categories.edit',
+        'uses' => 'ProcedureCategoryController@edit',
+        'middleware' => 'can:pearlskin.procedures_categories.edit'
+    ]);
+    $router->put('procedures-categories/{procedure}', [
+        'as' => 'admin.pearlskin.procedures_categories.update',
+        'uses' => 'ProcedureCategoryController@update',
+        'middleware' => 'can:pearlskin.procedures_categories.edit'
+    ]);
+    $router->delete('procedures-categories/{procedure}', [
+        'as' => 'admin.pearlskin.procedures_categories.destroy',
+        'uses' => 'ProcedureCategoryController@destroy',
+        'middleware' => 'can:pearlskin.procedures_categories.destroy'
+    ]);
+    /**
+     * Manipulations routes
+     */
     $router->bind('manipulation', function ($id) {
         return app('Modules\Pearlskin\Repositories\ManipulationRepository')->find($id);
     });

@@ -30,8 +30,9 @@
                         </div>
                     @endforeach
                     {!! Form::normalInput('price', trans('pearlskin::common.form.price'), $errors) !!}
-                        @mediaSingle('featured_image')
-                        @mediaMultiple('gallery')
+                        @include('media::admin.fields.new-file-link-single', [
+                        'zone' => 'image'
+                    ])
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.create') }}</button>
                         <button class="btn btn-default btn-flat" name="button" type="reset">{{ trans('core::core.button.reset') }}</button>

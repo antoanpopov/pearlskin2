@@ -2,12 +2,12 @@
 
 @section('content-header')
     <h1>
-        {{ trans('pearlskin::procedures.title.create procedure') }}
+        {{ trans('pearlskin::procedures.title.edit procedure') }}
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
         <li><a href="{{ route('admin.pearlskin.procedure.index') }}">{{ trans('pearlskin::procedures.title.procedures') }}</a></li>
-        <li class="active">{{ trans('pearlskin::procedures.title.create procedure') }}</li>
+        <li class="active">{{ trans('pearlskin::procedures.title.edit procedure') }}</li>
     </ol>
 @stop
 
@@ -16,9 +16,9 @@
 @stop
 
 @section('content')
-    {!! Form::open(['route' => ['admin.pearlskin.procedure.store'], 'method' => 'post']) !!}
+    {!! Form::open(['route' => ['admin.pearlskin.procedure.update', $procedure->id], 'method' => 'put']) !!}
     <div class="row">
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-12">
             <div class="nav-tabs-custom">
                 @include('partials.form-tab-headers')
                 <div class="tab-content">
@@ -26,14 +26,17 @@
                     @foreach (LaravelLocalization::getSupportedLocales() as $locale => $language)
                         <?php $i++; ?>
                         <div class="tab-pane {{ locale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
-                            @include('pearlskin::admin.procedures.partials.create-fields', ['lang' => $locale])
+                            @include('pearlskin::admin.procedures.partials.edit-fields', ['lang' => $locale])
                         </div>
                     @endforeach
-                    {!! Form::normalInput('price', trans('pearlskin::common.form.price'), $errors) !!}
-                        @mediaSingle('featured_image')
-                        @mediaMultiple('gallery')
+                    {!! Form::normalInput('price', trans('pearlskin::common.form.price'), $errors, $procedure) !!}
+                    @include('media::admin.fields.file-link', [
+                        'entityClass' => 'Modules\\\\Pearlskin\\\\Entities\\\\Procedure',
+                        'entityId' => $procedure->id,
+                        'zone' => 'image'
+                    ])
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.create') }}</button>
+                        <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
                         <button class="btn btn-default btn-flat" name="button" type="reset">{{ trans('core::core.button.reset') }}</button>
                         <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.pearlskin.procedure.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
                     </div>

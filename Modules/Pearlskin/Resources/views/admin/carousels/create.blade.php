@@ -48,12 +48,9 @@
                             {!! Form::normalCheckbox('is_visible', trans('pearlskin::common.form.is_visible'), $errors) !!}
                         </div>
                     </div>
-                    @include('media::admin.fields.new-file-link-single', [
-                        'zone' => 'background_image'
-                    ])
-                    @include('media::admin.fields.new-file-link-single', [
-                        'zone' => 'secondary_image'
-                    ])
+                        @include('media::admin.fields.new-file-link-single', [
+                            'zone' => 'image'
+                        ])
                     <div class="box-footer">
                         <button type="submit"
                                 class="btn btn-primary btn-flat">{{ trans('core::core.button.create') }}</button>

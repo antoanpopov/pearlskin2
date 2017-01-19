@@ -5,8 +5,11 @@
         {{ trans('pearlskin::procedures.title.edit procedure') }}
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
-        <li><a href="{{ route('admin.pearlskin.procedure.index') }}">{{ trans('pearlskin::procedures.title.procedures') }}</a></li>
+        <li><a href="{{ route('dashboard.index') }}"><i
+                        class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
+        <li>
+            <a href="{{ route('admin.pearlskin.procedure.index') }}">{{ trans('pearlskin::procedures.title.procedures') }}</a>
+        </li>
         <li class="active">{{ trans('pearlskin::procedures.title.edit procedure') }}</li>
     </ol>
 @stop
@@ -18,7 +21,7 @@
 @section('content')
     {!! Form::open(['route' => ['admin.pearlskin.procedure.update', $procedure->id], 'method' => 'put']) !!}
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6 col-xs-12">
             <div class="nav-tabs-custom">
                 @include('partials.form-tab-headers')
                 <div class="tab-content">
@@ -30,15 +33,17 @@
                         </div>
                     @endforeach
                     {!! Form::normalInput('price', trans('pearlskin::common.form.price'), $errors, $procedure) !!}
-                    @include('media::admin.fields.file-link', [
-                        'entityClass' => 'Modules\\\\Pearlskin\\\\Entities\\\\Procedure',
-                        'entityId' => $procedure->id,
-                        'zone' => 'image'
-                    ])
+                        @mediaSingle('featured_image', $procedure)
+                        @mediaMultiple('gallery', $procedure)
+                    </div>
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
-                        <button class="btn btn-default btn-flat" name="button" type="reset">{{ trans('core::core.button.reset') }}</button>
-                        <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.pearlskin.procedure.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
+                        <button type="submit"
+                                class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
+                        <button class="btn btn-default btn-flat" name="button"
+                                type="reset">{{ trans('core::core.button.reset') }}</button>
+                        <a class="btn btn-danger pull-right btn-flat"
+                           href="{{ route('admin.pearlskin.procedure.index')}}"><i
+                                    class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
                     </div>
                 </div>
             </div> {{-- end nav-tabs-custom --}}
@@ -59,16 +64,16 @@
 
 @section('scripts')
     <script type="text/javascript">
-        $( document ).ready(function() {
+        $(document).ready(function () {
             $(document).keypressAction({
                 actions: [
-                    { key: 'b', route: "<?= route('admin.pearlskin.procedure.index') ?>" }
+                    {key: 'b', route: "<?= route('admin.pearlskin.procedure.index') ?>"}
                 ]
             });
         });
     </script>
     <script>
-        $( document ).ready(function() {
+        $(document).ready(function () {
             $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
                 checkboxClass: 'icheckbox_flat-blue',
                 radioClass: 'iradio_flat-blue'

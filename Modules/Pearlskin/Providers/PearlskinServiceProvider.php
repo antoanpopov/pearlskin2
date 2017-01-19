@@ -11,17 +11,7 @@ use Modules\Pearlskin\Composers\ContentBlockComposer;
 use Modules\Pearlskin\Composers\DoctorComposer;
 use Modules\Pearlskin\Composers\HomeComposer;
 use Modules\Pearlskin\Composers\ProceduresComposer;
-use Modules\Pearlskin\Entities\Address;
-use Modules\Pearlskin\Entities\Article\Article;
-use Modules\Pearlskin\Entities\Carousel;
-use Modules\Pearlskin\Entities\Client;
-use Modules\Pearlskin\Entities\ContentBlock;
-use Modules\Pearlskin\Entities\Doctor;
-use Modules\Pearlskin\Entities\EmailMessage;
-use Modules\Pearlskin\Entities\Manipulation;
-use Modules\Pearlskin\Entities\Position;
-use Modules\Pearlskin\Entities\Procedure;
-use Modules\Pearlskin\Entities\Schedule;
+use Modules\Pearlskin\Entities;
 use Modules\Pearlskin\Repositories\Cache\CacheAddressDecorator;
 use Modules\Pearlskin\Repositories\Cache\CacheArticleDecorator;
 use Modules\Pearlskin\Repositories\Cache\CacheCarouselDecorator;
@@ -32,6 +22,7 @@ use Modules\Pearlskin\Repositories\Cache\CacheEmailMessageDecorator;
 use Modules\Pearlskin\Repositories\Cache\CacheManipulationDecorator;
 use Modules\Pearlskin\Repositories\Cache\CachePositionsDecorator;
 use Modules\Pearlskin\Repositories\Cache\CacheEmailDecorator;
+use Modules\Pearlskin\Repositories\Cache\CacheProcedureCategoryDecorator;
 use Modules\Pearlskin\Repositories\Cache\CacheProcedureDecorator;
 use Modules\Pearlskin\Repositories\Cache\CacheScheduleDecorator;
 use Modules\Pearlskin\Repositories\Eloquent\EloquentAddressRepository;
@@ -44,9 +35,10 @@ use Modules\Pearlskin\Repositories\Eloquent\EloquentEmailMessageRepository;
 use Modules\Pearlskin\Repositories\Eloquent\EloquentEmailRepository;
 use Modules\Pearlskin\Repositories\Eloquent\EloquentManipulationRepository;
 use Modules\Pearlskin\Repositories\Eloquent\EloquentPositionRepository;
+use Modules\Pearlskin\Repositories\Eloquent\EloquentProcedureCategoryRepository;
 use Modules\Pearlskin\Repositories\Eloquent\EloquentProcedureRepository;
 use Modules\Pearlskin\Repositories\Eloquent\EloquentScheduleRepository;
-use Modules\Pearlskin\Repositories\EmailMessageRepository;
+use Modules\Pearlskin\Repositories;
 
 class PearlskinServiceProvider extends ServiceProvider
 {
@@ -106,7 +98,7 @@ class PearlskinServiceProvider extends ServiceProvider
         $this->app->bind(
             'Modules\Pearlskin\Repositories\ClientRepository',
             function () {
-                $repository = new EloquentClientRepository(new Client());
+                $repository = new EloquentClientRepository(new Entities\Client());
 
                 if (!config('app.cache')) {
                     return $repository;
@@ -118,7 +110,7 @@ class PearlskinServiceProvider extends ServiceProvider
         $this->app->bind(
             'Modules\Pearlskin\Repositories\DoctorRepository',
             function () {
-                $repository = new EloquentDoctorRepository(new Doctor());
+                $repository = new EloquentDoctorRepository(new Entities\Doctor());
 
                 if (!config('app.cache')) {
                     return $repository;
@@ -130,7 +122,7 @@ class PearlskinServiceProvider extends ServiceProvider
         $this->app->bind(
             'Modules\Pearlskin\Repositories\ProcedureRepository',
             function () {
-                $repository = new EloquentProcedureRepository(new Procedure());
+                $repository = new EloquentProcedureRepository(new Entities\Procedure());
 
                 if (!config('app.cache')) {
                     return $repository;
@@ -142,7 +134,7 @@ class PearlskinServiceProvider extends ServiceProvider
         $this->app->bind(
             'Modules\Pearlskin\Repositories\ManipulationRepository',
             function () {
-                $repository = new EloquentManipulationRepository(new Manipulation());
+                $repository = new EloquentManipulationRepository(new Entities\Manipulation());
 
                 if (!config('app.cache')) {
                     return $repository;
@@ -154,7 +146,7 @@ class PearlskinServiceProvider extends ServiceProvider
         $this->app->bind(
             'Modules\Pearlskin\Repositories\ScheduleRepository',
             function () {
-                $repository = new EloquentScheduleRepository(new Schedule());
+                $repository = new EloquentScheduleRepository(new Entities\Schedule());
 
                 if (!config('app.cache')) {
                     return $repository;
@@ -166,7 +158,7 @@ class PearlskinServiceProvider extends ServiceProvider
         $this->app->bind(
             'Modules\Pearlskin\Repositories\AddressRepository',
             function () {
-                $repository = new EloquentAddressRepository(new Address());
+                $repository = new EloquentAddressRepository(new Entities\Address());
 
                 if (!config('app.cache')) {
                     return $repository;
@@ -178,7 +170,7 @@ class PearlskinServiceProvider extends ServiceProvider
         $this->app->bind(
             'Modules\Pearlskin\Repositories\CarouselRepository',
             function () {
-                $repository = new EloquentCarouselRepository(new Carousel());
+                $repository = new EloquentCarouselRepository(new Entities\Carousel());
 
                 if (!config('app.cache')) {
                     return $repository;
@@ -190,7 +182,7 @@ class PearlskinServiceProvider extends ServiceProvider
         $this->app->bind(
             'Modules\Pearlskin\Repositories\AddressRepository',
             function () {
-                $repository = new EloquentAddressRepository(new Address());
+                $repository = new EloquentAddressRepository(new Entities\Address());
 
                 if (!config('app.cache')) {
                     return $repository;
@@ -202,7 +194,7 @@ class PearlskinServiceProvider extends ServiceProvider
         $this->app->bind(
             'Modules\Pearlskin\Repositories\PositionRepository',
             function () {
-                $repository = new EloquentPositionRepository(new Position());
+                $repository = new EloquentPositionRepository(new Entities\Position());
 
                 if (!config('app.cache')) {
                     return $repository;
@@ -214,7 +206,7 @@ class PearlskinServiceProvider extends ServiceProvider
         $this->app->bind(
             'Modules\Pearlskin\Repositories\ContentBlockRepository',
             function () {
-                $repository = new EloquentContentBlockRepository(new ContentBlock());
+                $repository = new EloquentContentBlockRepository(new Entities\ContentBlock());
 
                 if (!config('app.cache')) {
                     return $repository;
@@ -226,7 +218,7 @@ class PearlskinServiceProvider extends ServiceProvider
         $this->app->bind(
             'Modules\Pearlskin\Repositories\ArticleRepository',
             function () {
-                $repository = new EloquentArticleRepository(new Article());
+                $repository = new EloquentArticleRepository(new Entities\Article\Article());
 
                 if (!config('app.cache')) {
                     return $repository;
@@ -236,14 +228,24 @@ class PearlskinServiceProvider extends ServiceProvider
             }
         );
 
-        $this->app->bind(EmailMessageRepository::class, function () {
-            $repository = new EloquentEmailMessageRepository(new EmailMessage());
+        $this->app->bind(Repositories\EmailMessageRepository::class, function () {
+            $repository = new Repositories\Eloquent\EloquentEmailMessageRepository(new Entities\EmailMessage());
 
             if (config('app.cache') === false) {
                 return $repository;
             }
 
             return new CacheEmailMessageDecorator($repository);
+        });
+
+        $this->app->bind(Repositories\ProcedureCategoryRepository::class, function () {
+            $repository = new Repositories\Eloquent\EloquentProcedureCategoryRepository(new Entities\ProcedureCategory());
+
+            if (config('app.cache') === false) {
+                return $repository;
+            }
+
+            return new CacheProcedureCategoryDecorator($repository);
         });
     }
 }
