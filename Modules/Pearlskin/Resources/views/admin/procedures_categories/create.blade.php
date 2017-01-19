@@ -2,12 +2,12 @@
 
 @section('content-header')
     <h1>
-        {{ trans('pearlskin::procedures.title.create procedure') }}
+        {{ trans('pearlskin::procedures_categories.title.create') }}
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
-        <li><a href="{{ route('admin.pearlskin.procedure.index') }}">{{ trans('pearlskin::procedures.title.procedures') }}</a></li>
-        <li class="active">{{ trans('pearlskin::procedures.title.create procedure') }}</li>
+        <li><a href="{{ route('admin.pearlskin.procedures_categories.index') }}">{{ trans('pearlskin::procedures_categories.title.procedures categories') }}</a></li>
+        <li class="active">{{ trans('pearlskin::procedures_categories.title.create') }}</li>
     </ol>
 @stop
 
@@ -16,7 +16,7 @@
 @stop
 
 @section('content')
-    {!! Form::open(['route' => ['admin.pearlskin.procedure.store'], 'method' => 'post']) !!}
+    {!! Form::open(['route' => ['admin.pearlskin.procedures_categories.store'], 'method' => 'post']) !!}
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="nav-tabs-custom">
@@ -26,17 +26,17 @@
                     @foreach (LaravelLocalization::getSupportedLocales() as $locale => $language)
                         <?php $i++; ?>
                         <div class="tab-pane {{ locale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
-                            @include('pearlskin::admin.procedures.partials.create-fields', ['lang' => $locale])
+                            @include('pearlskin::admin.procedures_categories.partials.create-fields', ['lang' => $locale])
                         </div>
                     @endforeach
-                    {!! Form::normalInput('price', trans('pearlskin::common.form.price'), $errors) !!}
-                        @include('media::admin.fields.new-file-link-single', [
-                        'zone' => 'image'
-                    ])
+                        <div class="col-sm-12">
+                            {!! Form::normalCheckbox('is_visible', trans('pearlskin::common.statuses.is visible'), $errors) !!}
+                        </div>
+                    @mediaSingle('featured_image')
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.create') }}</button>
                         <button class="btn btn-default btn-flat" name="button" type="reset">{{ trans('core::core.button.reset') }}</button>
-                        <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.pearlskin.procedure.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
+                        <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.pearlskin.procedures_categories.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
                     </div>
                 </div>
             </div> {{-- end nav-tabs-custom --}}
@@ -60,7 +60,7 @@
         $( document ).ready(function() {
             $(document).keypressAction({
                 actions: [
-                    { key: 'b', route: "<?= route('admin.pearlskin.procedure.index') ?>" }
+                    { key: 'b', route: "<?= route('admin.pearlskin.procedures_categories.index') ?>" }
                 ]
             });
         });

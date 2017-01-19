@@ -1,7 +1,7 @@
 <?php namespace Modules\Pearlskin\Repositories\Eloquent;
 
 use Modules\Pearlskin\Entities\ProcedureCategory;
-use Modules\Pearlskin\Events\ProcedureCategoryWasCreated;
+use Modules\Pearlskin\Events;
 use Modules\Pearlskin\Repositories\ProcedureCategoryRepository;
 use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 use Illuminate\Database\Eloquent\Builder;
@@ -12,9 +12,23 @@ class EloquentProcedureCategoryRepository extends EloquentBaseRepository impleme
     public function create($data)
     {
         $procedureCategory = $this->model->create($data);
-        event(new ProcedureCategoryWasCreated($procedureCategory, $data));
+        event(new Events\ProcedureCategory\ProcedureCategoryWasCreated($procedureCategory, $data));
 
         return $procedureCategory;
+    }
+
+    /**
+     * Update a resource
+     * @param $post
+     * @param  array $data
+     * @return mixed
+     */
+    public function update($post, $data)
+    {
+        $post->update($data);
+        event(new Events\ProcedureCategory\ProcedureCategoryWasUpdated($post, $data));
+
+        return $post;
     }
 
     public function allProcedureCategories()

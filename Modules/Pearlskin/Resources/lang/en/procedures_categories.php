@@ -8,12 +8,12 @@ return [
 
     'title' => [
         'procedures categories' => 'Procedures Categories',
-        'create procedures categories' => 'Create procedures categories',
-        'edit procedures categories' => 'Edit procedures categories',
+        'create procedures categories' => 'Create Category',
+        'edit procedures categories' => 'Edit Category',
     ],
     'button' => [
-        'create procedures categories' => 'Create procedures categories',
-        'add procedures categories' => 'Add Procedure',
+        'create' => 'Create Category',
+        'add' => 'Add Procedure',
     ],
     'table' => [
     ],

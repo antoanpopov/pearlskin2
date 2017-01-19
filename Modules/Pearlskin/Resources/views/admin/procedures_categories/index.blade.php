@@ -2,11 +2,11 @@
 
 @section('content-header')
     <h1>
-        {{ trans('pearlskin::procedures.title.procedures') }}
+        {{ trans('pearlskin::procedures_categories.title.procedures categories') }}
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
-        <li class="active">{{ trans('pearlskin::procedures.title.procedures') }}</li>
+        <li class="active">{{ trans('pearlskin::procedures_categories.title.procedures categories') }}</li>
     </ol>
 @stop
 
@@ -15,8 +15,8 @@
         <div class="col-xs-12">
             <div class="row">
                 <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
-                    <a href="{{ route('admin.pearlskin.procedure.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                        <i class="fa fa-pencil"></i> {{ trans('pearlskin::procedures.button.create procedure') }}
+                    <a href="{{ route('admin.pearlskin.procedures_categories.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
+                        <i class="fa fa-pencil"></i> {{ trans('pearlskin::procedures_categories.button.create') }}
                     </a>
                 </div>
             </div>
@@ -36,37 +36,37 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <?php if (isset($procedures)): ?>
-                        <?php foreach ($procedures as $procedure): ?>
+                        <?php if (isset($procedureCategories)): ?>
+                        <?php foreach ($procedureCategories as $procedureCategory): ?>
                         <tr>
                             <td>
-                                <?php if (count($procedure->files()->where('zone', 'image')->get())): ?>
-                                <img src="{{ Imagy::getThumbnail($procedure->files()->where('zone', 'image')->get()[0]->path, 'smallThumb') }}" alt=""/>
+                                <?php if (count($procedureCategory->files()->where('zone', 'featured_image')->get())): ?>
+                                <img src="{{ Imagy::getThumbnail($procedureCategory->files()->where('zone', 'featured_image')->get()[0]->path, 'smallThumb') }}" alt=""/>
                                 <?php else: ?>
                                 <i class="fa fa-file" style="font-size: 20px;"></i>
                                 <?php endif; ?>
                             </td>
                             <td>
-                                <a href="{{ route('admin.pearlskin.procedure.edit', [$procedure->id]) }}">
-                                    {{ $procedure->title }}
+                                <a href="{{ route('admin.pearlskin.procedures_categories.edit', [$procedureCategory->id]) }}">
+                                    {{ $procedureCategory->title }}
                                 </a>
                             </td>
                             <td>
-                                @if($procedure->is_visible)
+                                @if($procedureCategory->is_visible)
                                     <span class="label label-success">{{ trans('pearlskin::common.statuses.is visible') }}</span>
                                 @else
                                     <span class="label label-danger">{{ trans('pearlskin::common.statuses.not visible') }}</span>
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ route('admin.pearlskin.procedure.edit', [$procedure->id]) }}">
-                                    {{ $procedure->created_at }}
+                                <a href="{{ route('admin.pearlskin.procedures_categories.edit', [$procedureCategory->id]) }}">
+                                    {{ $procedureCategory->created_at }}
                                 </a>
                             </td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('admin.pearlskin.procedure.edit', [$procedure->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
-                                    <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.pearlskin.procedure.destroy', [$procedure->id]) }}"><i class="fa fa-trash"></i></button>
+                                    <a href="{{ route('admin.pearlskin.procedures_categories.edit', [$procedureCategory->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
+                                    <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.pearlskin.procedures_categories.destroy', [$procedureCategory->id]) }}"><i class="fa fa-trash"></i></button>
                                 </div>
                             </td>
                         </tr>

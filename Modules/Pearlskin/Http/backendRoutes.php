@@ -107,7 +107,7 @@ $router->group(['prefix' =>'/pearlskin'], function (Router $router) {
     /**
      * Procedure Categories routes
      */
-    $router->bind('procedure-category', function ($id) {
+    $router->bind('procedureCategory', function ($id) {
         return app('Modules\Pearlskin\Repositories\ProcedureCategoryRepository')->find($id);
     });
     $router->get('procedures-categories', [
@@ -125,17 +125,17 @@ $router->group(['prefix' =>'/pearlskin'], function (Router $router) {
         'uses' => 'ProcedureCategoryController@store',
         'middleware' => 'can:pearlskin.procedures_categories.create'
     ]);
-    $router->get('procedures-categories/{procedure}/edit', [
+    $router->get('procedures-categories/{procedureCategory}/edit', [
         'as' => 'admin.pearlskin.procedures_categories.edit',
         'uses' => 'ProcedureCategoryController@edit',
         'middleware' => 'can:pearlskin.procedures_categories.edit'
     ]);
-    $router->put('procedures-categories/{procedure}', [
+    $router->put('procedures-categories/{procedureCategory}', [
         'as' => 'admin.pearlskin.procedures_categories.update',
         'uses' => 'ProcedureCategoryController@update',
         'middleware' => 'can:pearlskin.procedures_categories.edit'
     ]);
-    $router->delete('procedures-categories/{procedure}', [
+    $router->delete('procedures-categories/{procedureCategory}', [
         'as' => 'admin.pearlskin.procedures_categories.destroy',
         'uses' => 'ProcedureCategoryController@destroy',
         'middleware' => 'can:pearlskin.procedures_categories.destroy'
