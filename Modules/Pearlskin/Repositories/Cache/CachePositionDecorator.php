@@ -3,7 +3,7 @@
 use Modules\Core\Repositories\Cache\BaseCacheDecorator;
 use Modules\Pearlskin\Repositories\PositionRepository;
 
-class CachePositionsDecorator extends BaseCacheDecorator implements PositionRepository
+class CachePositionDecorator extends BaseCacheDecorator implements PositionRepository
 {
     public function __construct(PositionRepository $positionRepository)
     {

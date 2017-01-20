@@ -15,7 +15,6 @@ use Modules\Pearlskin\Repositories\Cache\CacheContentBlockDecorator;
 use Modules\Pearlskin\Repositories\Cache\CacheDoctorDecorator;
 use Modules\Pearlskin\Repositories\Cache\CacheEmailMessageDecorator;
 use Modules\Pearlskin\Repositories\Cache\CacheManipulationDecorator;
-use Modules\Pearlskin\Repositories\Cache\CachePositionsDecorator;
 use Modules\Pearlskin\Repositories\Cache\CacheEmailDecorator;
 use Modules\Pearlskin\Repositories\Cache\CacheProcedureCategoryDecorator;
 use Modules\Pearlskin\Repositories\Cache\CacheProcedureDecorator;
@@ -26,11 +25,9 @@ use Modules\Pearlskin\Repositories\Eloquent\EloquentCarouselRepository;
 use Modules\Pearlskin\Repositories\Eloquent\EloquentClientRepository;
 use Modules\Pearlskin\Repositories\Eloquent\EloquentContentBlockRepository;
 use Modules\Pearlskin\Repositories\Eloquent\EloquentDoctorRepository;
-use Modules\Pearlskin\Repositories\Eloquent\EloquentEmailMessageRepository;
 use Modules\Pearlskin\Repositories\Eloquent\EloquentEmailRepository;
 use Modules\Pearlskin\Repositories\Eloquent\EloquentManipulationRepository;
 use Modules\Pearlskin\Repositories\Eloquent\EloquentPositionRepository;
-use Modules\Pearlskin\Repositories\Eloquent\EloquentProcedureCategoryRepository;
 use Modules\Pearlskin\Repositories\Eloquent\EloquentProcedureRepository;
 use Modules\Pearlskin\Repositories\Eloquent\EloquentScheduleRepository;
 use Modules\Pearlskin\Repositories;
@@ -196,7 +193,7 @@ class PearlskinServiceProvider extends ServiceProvider
                     return $repository;
                 }
 
-                return new CachePositionsDecorator($repository);
+                return new Repositories\Cache\CachePositionDecorator($repository);
             }
         );
         $this->app->bind(
@@ -242,6 +239,26 @@ class PearlskinServiceProvider extends ServiceProvider
             }
 
             return new CacheProcedureCategoryDecorator($repository);
+        });
+
+        $this->app->bind(Repositories\PriceListRepository::class, function () {
+            $repository = new Repositories\Eloquent\EloquentPriceListRepository(new Entities\PriceList());
+
+            if (config('app.cache') === false) {
+                return $repository;
+            }
+
+            return new Repositories\Cache\CachePriceListDecorator($repository);
+        });
+
+        $this->app->bind(Repositories\PriceListCategoryRepository::class, function () {
+            $repository = new Repositories\Eloquent\EloquentPriceListCategoryRepository(new Entities\PriceListCategory());
+
+            if (config('app.cache') === false) {
+                return $repository;
+            }
+
+            return new Repositories\Cache\CachePriceListCategoryDecorator($repository);
         });
     }
 }

@@ -73,4 +73,16 @@ return [
         'edit' => 'pearlskin::emails.edit resource',
         'destroy' => 'pearlskin::emails.destroy resource',
     ],
+    'pearlskin.priceLists' => [
+        'index' => 'pearlskin::priceLists.list',
+        'create' => 'pearlskin::priceLists.create',
+        'edit' => 'pearlskin::priceLists.edit',
+        'destroy' => 'pearlskin::priceLists.destroy',
+    ],
+    'pearlskin.priceListsCategories' => [
+        'index' => 'pearlskin::priceListsCategories.list',
+        'create' => 'pearlskin::priceListsCategories.create',
+        'edit' => 'pearlskin::priceListsCategories.edit',
+        'destroy' => 'pearlskin::priceListsCategories.destroy',
+    ],
 ];

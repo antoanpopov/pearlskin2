@@ -93,6 +93,30 @@ class SidebarExtender implements \Maatwebsite\Sidebar\SidebarExtender
                         $this->auth->hasAccess('pearlskin.procedures_categories.index')
                     );
                 });
+                /**
+                 * Price list menu
+                 */
+                $item->item(trans('pearlskin::priceLists.title.module'), function (Item $item) {
+                    $item->icon('fa fa-heartbeat');
+                    $item->weight(0);
+                    $item->append('admin.pearlskin.priceLists.create');
+                    $item->route('admin.pearlskin.priceLists.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('pearlskin.priceLists.index')
+                    );
+                });
+                $item->item(trans('pearlskin::priceListsCategories.title.module'), function (Item $item) {
+                    $item->icon('fa fa-heartbeat');
+                    $item->weight(0);
+                    $item->append('admin.pearlskin.priceListsCategories.create');
+                    $item->route('admin.pearlskin.priceListsCategories.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('pearlskin.priceListsCategories.index')
+                    );
+                });
+                /**
+                * Manipulations menu
+                */
                 $item->item(trans('pearlskin::manipulations.title.manipulations'), function (Item $item) {
                     $item->icon('fa fa-medkit');
                     $item->weight(0);

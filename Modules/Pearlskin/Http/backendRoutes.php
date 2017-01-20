@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Routing\Router;
+use Modules\Pearlskin\Repositories;
 /** @var Router $router */
 
-$router->group(['prefix' =>'/pearlskin'], function (Router $router) {
+$router->group(['prefix' => '/pearlskin'], function (Router $router) {
     $router->bind('client', function ($id) {
         return app('Modules\Pearlskin\Repositories\ClientRepository')->find($id);
     });
@@ -426,6 +427,66 @@ $router->group(['prefix' =>'/pearlskin'], function (Router $router) {
         'middleware' => 'can:pearlskin.emails.destroy'
     ]);
 
+    // PriceList routes
 
+    $router->bind('priceList', function ($id) {
+        return app(Repositories\PriceListRepository::class)->find($id);
+    });
+    $router->get('price-lists', [
+        'as' => 'admin.pearlskin.priceLists.index',
+        'uses' => 'PriceListController@index',
+        'middleware' => 'can:pearlskin.priceLists.index'
+    ]);
+    $router->get('price-lists/create', [
+        'as' => 'admin.pearlskin.priceLists.create',
+        'uses' => 'PriceListController@create',
+        'middleware' => 'can:pearlskin.priceLists.create'
+    ]);
+    $router->post('price-lists', [
+        'as' => 'admin.pearlskin.priceLists.store',
+        'uses' => 'PriceListController@store',
+        'middleware' => 'can:pearlskin.priceLists.create'
+    ]);
+    $router->put('price-lists/{priceList}', [
+        'as' => 'admin.pearlskin.priceLists.update',
+        'uses' => 'PriceListController@update',
+        'middleware' => 'can:pearlskin.priceLists.edit'
+    ]);
+    $router->delete('price-lists/{priceList}', [
+        'as' => 'admin.pearlskin.priceLists.destroy',
+        'uses' => 'PriceListController@destroy',
+        'middleware' => 'can:pearlskin.priceLists.destroy'
+    ]);
+
+    // PriceListCategories routes
+
+    $router->bind('priceListCategory', function ($id) {
+        return app(Repositories\PriceListCategoryRepository::class)->find($id);
+    });
+    $router->get('price-lists-categories', [
+        'as' => 'admin.pearlskin.priceListsCategories.index',
+        'uses' => 'PriceListCategoryController@index',
+        'middleware' => 'can:pearlskin.priceLists.index'
+    ]);
+    $router->get('price-lists-categories/create', [
+        'as' => 'admin.pearlskin.priceListsCategories.create',
+        'uses' => 'PriceListCategoryController@create',
+        'middleware' => 'can:pearlskin.priceListsCategories.create'
+    ]);
+    $router->post('price-lists-categories', [
+        'as' => 'admin.pearlskin.priceListsCategories.store',
+        'uses' => 'PriceListCategoryController@store',
+        'middleware' => 'can:pearlskin.priceListsCategories.create'
+    ]);
+    $router->put('priceLists/{priceList}', [
+        'as' => 'admin.pearlskin.priceListsCategories.update',
+        'uses' => 'PriceListCategoryController@update',
+        'middleware' => 'can:pearlskin.priceListsCategories.edit'
+    ]);
+    $router->delete('emails/{priceList}', [
+        'as' => 'admin.pearlskin.priceListsCategories.destroy',
+        'uses' => 'PriceListCategoryController@destroy',
+        'middleware' => 'can:pearlskin.priceListsCategories.destroy'
+    ]);
 
 });
