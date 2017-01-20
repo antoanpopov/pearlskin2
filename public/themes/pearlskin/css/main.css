@@ -7696,6 +7696,9 @@ h5, .h5 {
 .padding-top-50 {
   padding-top: 50px !important; }
 
+.padding-left-15 {
+  padding-left: 15px; }
+
 /** END PADDINGS **/
 /** BLOG **/
 .blog-title {
@@ -8096,5 +8099,22 @@ footer {
           color: #aaa;
           margin-top: 0;
           display: inline; }
+
+.image-gallery {
+  list-style-type: none;
+  padding-left: 0; }
+  .image-gallery > li {
+    display: block;
+    width: 25%;
+    float: left;
+    margin-top: 0 !important; }
+    .image-gallery > li > a {
+      height: 90px;
+      overflow: hidden;
+      width: 100%;
+      border: 2px solid #fff;
+      display: block; }
+      .image-gallery > li > a > img {
+        width: 100%; }
 
 /*# sourceMappingURL=main.css.map */

@@ -33,6 +33,6 @@ class Procedure extends Model
      */
     public function category()
     {
-        return $this->belongsTo(ProcedureCategory::class);
+        return $this->belongsTo(ProcedureCategory::class, 'procedure_cat_id');
     }
 }

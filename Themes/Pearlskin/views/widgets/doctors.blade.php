@@ -10,7 +10,7 @@
                             <img src="{{ Imagy::getThumbnail($doctor->files()->where('zone', 'image')->get()[0]->path, 'mediumThumb') }}"
                                  alt="{{ $doctor->names }}"/>
                         @else
-                            <img src=""
+                            <img src="{{asset('assets/img/default_image.jpg')}}"
                                  alt="{{ $doctor->names }}"/>
                         @endif
                     </a>

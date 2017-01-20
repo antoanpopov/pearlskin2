@@ -8,6 +8,7 @@ return [
     ],
     'labels' => [
         'all' => 'All',
+        'gallery' => 'Gallery',
         'read more' => 'Read More',
         'find us here' => 'Find Us Here',
         'about us' => 'About Us',

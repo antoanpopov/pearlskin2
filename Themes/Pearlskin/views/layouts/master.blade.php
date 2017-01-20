@@ -10,7 +10,8 @@
         @section('title'){{ Setting::get('core::site-name') }}
         @show
     </title>
-    <link rel="shortcut icon" href="{{ Theme::url('favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="stylesheet" href="{{ asset('bower_components/lightbox2/dist/css/lightbox.min.css') }}" />
     {!! Theme::style('css/main.css') !!}
     {!! Theme::style('vendor/Swiper/dist/css/swiper.min.css') !!}
 
@@ -21,6 +22,7 @@
     {!! Theme::script('vendor/Swiper/dist/js/swiper.min.js') !!}
     {!! Theme::script('vendor/bootstrap/dist/js/bootstrap.min.js') !!}
     <script src="{{ asset('bower_components/isotope/dist/isotope.pkgd.js') }}"></script>
+    <script src="{{ asset('bower_components/lightbox2/dist/js/lightbox.min.js') }}"></script>
 </head>
 <body>
 <div class="wrapper">

@@ -14,9 +14,9 @@
     ))
     {!! Breadcrumbs::render('page',$page) !!}
     <div class="container content">
-        <div class="col-md-9 col-sm-12">
+        <div class="col-md-12 col-sm-12">
             <div class="row">
-                <ul class="nav nav-pills">
+                <ul class="nav nav-pills padding-left-15">
                     <li role="presentation" class="active">
                         <a class="color-primary"
                            data-filter="*">
@@ -35,14 +35,14 @@
             </div>
             <div class="row grid">
                 @foreach($procedures as $procedure)
-                    <figure class="col-md-6 col-xs-12 grid-item procedure_category_{{$procedure->procedure_cat_id}}">
+                    <figure class="col-md-4 col-xs-12 grid-item procedure_category_{{$procedure->procedure_cat_id}}">
                         <div class="thumbnail">
                             <div class="thumbnail-image-container">
                                 @if(count($procedure->files()->where('zone', 'featured_image')->get()))
                                     <img src="{{ Imagy::getThumbnail($procedure->files()->where('zone', 'featured_image')->get()[0]->path, 'mediumThumb') }}"
                                          alt="{{ $procedure->title }}"/>
                                 @else
-                                    <img src=""
+                                    <img src="{{asset('assets/img/default_image.jpg')}}"
                                          alt="{{ $procedure->title }}"/>
                                 @endif
                             </div>
@@ -83,8 +83,5 @@
             </script>
             {!! $procedures->render() !!}
         </div>
-        <aside class="col-md-3 hidden-sm hidden-xs">
-            @include('widgets.procedures')
-        </aside>
     </div>
 @stop

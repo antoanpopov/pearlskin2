@@ -8,6 +8,7 @@ return [
     ],
     'labels' => [
         'all' => 'Всички',
+        'gallery' => 'Галерия',
         'read more' => 'Прочети още',
         'find us here' => 'Открийте ни тук',
         'about us' => 'За нас',

@@ -17,11 +17,9 @@
         <div class="row">
             <div class="col-md-9 col-xs-12">
                 {!! $procedure->description !!}
-                <div>
-                    @foreach($procedure->files()->where('zone', 'gallery')->get() as $image)
-                        {{dump($image->path->getUrl())}}
-                    @endforeach
-                </div>
+                @if($procedure->files()->where('zone', 'gallery')->count() > 0)
+                    @include('widgets.gallery.simple', ['images' => $procedure->files()->where('zone', 'gallery')->get()])
+                @endif
             </div>
             <div class="col-md-3 col-xs-12">
                 <aside>

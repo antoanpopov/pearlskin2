@@ -66,7 +66,7 @@
                             <td>
                                 <a href="{{ route('admin.pearlskin.procedure.edit', [$procedure->id]) }}">
                                     @if($procedure->category)
-                                        {{ $procedure->category->name }}
+                                        {{ $procedure->category->title }}
                                     @else
                                         {{ trans('pearlskin::common.none') }}
                                     @endif

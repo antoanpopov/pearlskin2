@@ -10,7 +10,7 @@
                             <img src="{{ Imagy::getThumbnail($procedure->files()->where('zone', 'featured_image')->get()[0]->path, 'mediumThumb') }}"
                                  alt="{{ $procedure->title }}"/>
                         @else
-                            <img src=""
+                            <img src="{{asset('assets/img/default_image.jpg')}}"
                                  alt="{{ $procedure->title }}"/>
                         @endif
                     </a>

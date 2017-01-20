@@ -12,8 +12,8 @@
     @include('partials.page-title',array(
         'title' => $page->title
     ))
+    {!! Breadcrumbs::render('page',$page) !!}
     <div class="container content">
-        {!! Breadcrumbs::render('page',$page) !!}
         <div class="col-lg-6 col-xs-12">
             <h1 class="m-n font-thin h3 text-black">{{ $page->title }}</h1>
             @foreach($addresses as $address)
@@ -82,7 +82,7 @@
         </div>
         {!! Form::open(['route' => ['contact_us.ask_question'], 'method' => 'post','class' => 'col-lg-6 col-sm-12 col-xs-12']) !!}
         <div class="col-sm-12">
-            <h1 class="m-n font-thin h3 text-black">{{ trans('pearlskin::common.contact us.get in touch') }}</h1>
+            <h1 class="m-n font-thin h3 text-black">{{ trans('pearlskin::common.labels.get in touch') }}</h1>
         </div>
         <div class="col-sm-12">
             <div class='input-group {{ $errors->has("name") ? ' has-error' : '' }}'>
