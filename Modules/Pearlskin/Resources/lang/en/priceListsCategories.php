@@ -10,7 +10,7 @@ return [
     'destroy' => 'Delete ' . $multiple,
 
     'title' => [
-        'module' => $single,
+        'module' => $multiple,
         'list' => $single,
         'create' => 'Create a ' . $single,
         'edit' => 'Edit a ' . $single,

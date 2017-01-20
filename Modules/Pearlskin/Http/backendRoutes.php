@@ -447,6 +447,11 @@ $router->group(['prefix' => '/pearlskin'], function (Router $router) {
         'uses' => 'PriceListController@store',
         'middleware' => 'can:pearlskin.priceLists.create'
     ]);
+    $router->get('price-lists/{priceList}/edit', [
+        'as' => 'admin.pearlskin.priceLists.edit',
+        'uses' => 'PriceListController@edit',
+        'middleware' => 'can:pearlskin.priceLists.edit'
+    ]);
     $router->put('price-lists/{priceList}', [
         'as' => 'admin.pearlskin.priceLists.update',
         'uses' => 'PriceListController@update',

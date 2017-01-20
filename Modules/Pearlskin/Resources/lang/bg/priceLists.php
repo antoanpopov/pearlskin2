@@ -9,7 +9,7 @@ return [
     'destroy' => 'Триене на ' . $multiple,
 
     'title' => [
-        'module' => $single,
+        'module' => $multiple,
         'list' => $single,
         'create' => 'Създай ' . $single,
         'edit' => 'Редактирай ' . $single,
