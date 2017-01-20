@@ -15,7 +15,7 @@
 @section('content')
     {!! Breadcrumbs::render() !!}
     <div class="container content">
-        <div class="block-bump"></div>
+        {{--<div class="block-bump"></div>--}}
         <h3 class="text-center">Защо клиентите ни предпочитат</h3>
         <div class="col-sm-12 text-center">
             <span class="under-bump">‿</span>

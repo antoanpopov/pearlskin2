@@ -12,15 +12,34 @@
     @include('partials.page-title',array(
         'title' => $page->title
     ))
+    {!! Breadcrumbs::render('page',$page) !!}
     <div class="container content">
         <div class="col-md-9 col-sm-12">
             <div class="row">
+                <ul class="nav nav-pills">
+                    <li role="presentation" class="active">
+                        <a class="color-primary"
+                           data-filter="*">
+                            {{ trans('pearlskin::common.labels.all') }}
+                        </a>
+                    </li>
+                    @foreach($procedureCategories as $procedureCategory)
+                        <li role="presentation">
+                            <a class="color-primary"
+                               data-filter=".procedure_category_{{$procedureCategory->id}}">
+                                {{ $procedureCategory->title }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+            <div class="row grid">
                 @foreach($procedures as $procedure)
-                    <figure class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <figure class="col-md-6 col-xs-12 grid-item procedure_category_{{$procedure->procedure_cat_id}}">
                         <div class="thumbnail">
                             <div class="thumbnail-image-container">
-                                @if(count($procedure->files()->where('zone', 'image')->get()))
-                                    <img src="{{ Imagy::getThumbnail($procedure->files()->where('zone', 'image')->get()[0]->path, 'mediumThumb') }}"
+                                @if(count($procedure->files()->where('zone', 'featured_image')->get()))
+                                    <img src="{{ Imagy::getThumbnail($procedure->files()->where('zone', 'featured_image')->get()[0]->path, 'mediumThumb') }}"
                                          alt="{{ $procedure->title }}"/>
                                 @else
                                     <img src=""
@@ -46,7 +65,23 @@
                     </figure>
                 @endforeach
             </div>
-        {!! $procedures->render() !!}
+            <script>
+                var grid = $('.grid').isotope({
+                    // options
+                    itemSelector: '.grid-item',
+                    layoutMode: 'fitRows'
+                });
+                $('[data-filter]').click(function () {
+                    var filterParameter = $(this).data('filter');
+                    grid.isotope({filter: filterParameter});
+                })
+
+                $('.nav-pills li').click(function(){
+                    $('.nav-pills li').removeClass('active');
+                    $(this).addClass('active');
+                });
+            </script>
+            {!! $procedures->render() !!}
         </div>
         <aside class="col-md-3 hidden-sm hidden-xs">
             @include('widgets.procedures')

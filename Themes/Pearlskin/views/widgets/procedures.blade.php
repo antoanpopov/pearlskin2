@@ -6,8 +6,8 @@
                 <div class="widget-thumbnail">
                     <a href="{{ route('procedure', $procedure->title) }}"
                        title="{{ $procedure->title }}">
-                        @if(count($procedure->files()->where('zone', 'image')->get()))
-                            <img src="{{ Imagy::getThumbnail($procedure->files()->where('zone', 'image')->get()[0]->path, 'mediumThumb') }}"
+                        @if(count($procedure->files()->where('zone', 'featured_image')->get()))
+                            <img src="{{ Imagy::getThumbnail($procedure->files()->where('zone', 'featured_image')->get()[0]->path, 'mediumThumb') }}"
                                  alt="{{ $procedure->title }}"/>
                         @else
                             <img src=""

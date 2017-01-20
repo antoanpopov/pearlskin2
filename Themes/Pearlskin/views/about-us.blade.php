@@ -11,8 +11,8 @@
     @include('partials.page-title',array(
         'title' => $page->title
     ))
+    {!! Breadcrumbs::render('page',$page) !!}
     <div class="container content">
-        {!! Breadcrumbs::render('page',$page) !!}
         <div class="col-md-9 col-sm-12">
             {!! $page->body !!}
         </div>

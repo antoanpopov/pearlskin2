@@ -7,6 +7,7 @@ return [
         'layout' => 'Layout',
     ],
     'labels' => [
+        'all' => 'All',
         'read more' => 'Read More',
         'find us here' => 'Find Us Here',
         'about us' => 'About Us',

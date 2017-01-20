@@ -20,6 +20,7 @@
     {!! Theme::script('vendor/parallax.js/parallax.js') !!}
     {!! Theme::script('vendor/Swiper/dist/js/swiper.min.js') !!}
     {!! Theme::script('vendor/bootstrap/dist/js/bootstrap.min.js') !!}
+    <script src="{{ asset('bower_components/isotope/dist/isotope.pkgd.js') }}"></script>
 </head>
 <body>
 <div class="wrapper">

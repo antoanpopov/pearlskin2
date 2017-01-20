@@ -7,6 +7,7 @@ return [
         'layout' => 'Шаблон',
     ],
     'labels' => [
+        'all' => 'Всички',
         'read more' => 'Прочети още',
         'find us here' => 'Открийте ни тук',
         'about us' => 'За нас',

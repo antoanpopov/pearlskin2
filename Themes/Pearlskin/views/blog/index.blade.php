@@ -7,10 +7,9 @@
     @include('partials.page-title',array(
             'title' => 'Blog'
     ))
+    {!! Breadcrumbs::render() !!}
     <div class="container content">
-        {!! Breadcrumbs::render() !!}
         <div class="col-md-9 col-sm-12">
-
             <?php if (isset($posts)): ?>
             <div class="row">
                 <?php foreach($posts as $post): ?>

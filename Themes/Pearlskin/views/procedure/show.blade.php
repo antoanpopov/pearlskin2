@@ -11,12 +11,17 @@
 @section('content')
     @include('partials.page-title',array(
         'title' => $procedure->title,
-        'image' => $procedure->files()->where('zone', 'image')->get()[0]->path->getUrl()
+        'image' => $procedure->files()->where('zone', 'featured_image')->get()[0]->path->getUrl()
     ))
     <div class="container content">
         <div class="row">
             <div class="col-md-9 col-xs-12">
                 {!! $procedure->description !!}
+                <div>
+                    @foreach($procedure->files()->where('zone', 'gallery')->get() as $image)
+                        {{dump($image->path->getUrl())}}
+                    @endforeach
+                </div>
             </div>
             <div class="col-md-3 col-xs-12">
                 <aside>

@@ -5,12 +5,7 @@ namespace Modules\Pearlskin\Providers;
 use Illuminate\Support\ServiceProvider;
 use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Blog\Composers\Frontend\LatestPostsComposer;
-use Modules\Pearlskin\Composers\AddressesComposer;
-use Modules\Pearlskin\Composers\ArticleComposer;
-use Modules\Pearlskin\Composers\ContentBlockComposer;
-use Modules\Pearlskin\Composers\DoctorComposer;
-use Modules\Pearlskin\Composers\HomeComposer;
-use Modules\Pearlskin\Composers\ProceduresComposer;
+use Modules\Pearlskin\Composers;
 use Modules\Pearlskin\Entities;
 use Modules\Pearlskin\Repositories\Cache\CacheAddressDecorator;
 use Modules\Pearlskin\Repositories\Cache\CacheArticleDecorator;
@@ -58,22 +53,23 @@ class PearlskinServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerBindings();
-        view()->composer('procedures', ProceduresComposer::class);
-        view()->composer('procedures', ContentBlockComposer::class);
-        view()->composer('home', HomeComposer::class);
-        view()->composer('home', ContentBlockComposer::class);
-        view()->composer('home', ArticleComposer::class);
-        view()->composer('about-us', ContentBlockComposer::class);
-        view()->composer('about-us', DoctorComposer::class);
-        view()->composer('contact-us', AddressesComposer::class);
-        view()->composer('partials.footer', AddressesComposer::class);
+        view()->composer('procedures', Composers\ProceduresComposer::class);
+        view()->composer('procedures', Composers\ProcedureCategoriesComposer::class);
+        view()->composer('procedures', Composers\ContentBlockComposer::class);
+        view()->composer('home', Composers\HomeComposer::class);
+        view()->composer('home', Composers\ContentBlockComposer::class);
+        view()->composer('home', Composers\ArticleComposer::class);
+        view()->composer('about-us', Composers\ContentBlockComposer::class);
+        view()->composer('about-us', Composers\DoctorComposer::class);
+        view()->composer('contact-us', Composers\AddressesComposer::class);
+        view()->composer('partials.footer', Composers\AddressesComposer::class);
 
         /**
          * Widgets providers
          */
 
-        view()->composer('widgets.doctors', DoctorComposer::class);
-        view()->composer('widgets.procedures', ProceduresComposer::class);
+        view()->composer('widgets.doctors', Composers\DoctorComposer::class);
+        view()->composer('widgets.procedures', Composers\ProceduresComposer::class);
         view()->composer('widgets.blog.posts', LatestPostsComposer::class);
     }
 

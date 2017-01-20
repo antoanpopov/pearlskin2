@@ -9,8 +9,8 @@
 @stop
 
 @section('content')
+    {!! Breadcrumbs::render('doctor',$doctor) !!}
     <div class="container content">
-        {!! Breadcrumbs::render('doctor',$doctor) !!}
         <div class="row">
             <div class="col-md-9 col-xs-12">
                 @include('partials.subpage-title',array(

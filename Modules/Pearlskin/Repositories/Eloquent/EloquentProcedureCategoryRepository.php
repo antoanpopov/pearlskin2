@@ -33,7 +33,7 @@ class EloquentProcedureCategoryRepository extends EloquentBaseRepository impleme
 
     public function allProcedureCategories()
     {
-        return ProcedureCategory::paginate(6);
+        return ProcedureCategory::all();
     }
 
     /**

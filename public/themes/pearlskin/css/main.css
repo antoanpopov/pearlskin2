@@ -7920,7 +7920,7 @@ header {
     width: 100%;
     left: 0;
     bottom: 0;
-    padding: 0 40px 35px 40px; }
+    padding: 0 40px 10px 40px; }
     .thumbnail > .thumbnail-caption > .thumbnail-bump {
       width: 104px;
       height: 104px;
@@ -8034,6 +8034,39 @@ footer {
 
   .col-xs-12, .col-sm-12 {
     padding: 0; } }
+.box-shadow-bottom {
+  -webkit-box-shadow: 0 2px 2px rgba(1, 1, 1, 0.2);
+  -moz-box-shadow: 0 2px 2px rgba(1, 1, 1, 0.2);
+  box-shadow: 0 2px 2px rgba(1, 1, 1, 0.2); }
+
+.breadcrumb {
+  background-color: #fff;
+  border-radius: 0;
+  padding: 10px 20px;
+  margin-bottom: 0;
+  -webkit-box-shadow: 0 2px 2px rgba(1, 1, 1, 0.2);
+  -moz-box-shadow: 0 2px 2px rgba(1, 1, 1, 0.2);
+  box-shadow: 0 2px 2px rgba(1, 1, 1, 0.2); }
+  .breadcrumb > li > a {
+    color: #2acd35;
+    font-weight: bold; }
+
+.nav-pills > li {
+  padding: 0;
+  margin-left: 0;
+  margin-bottom: 20px; }
+  .nav-pills > li > a {
+    padding: 10px 15px;
+    border-radius: 0;
+    background-color: #fff;
+    color: #2acd35; }
+    .nav-pills > li > a:hover {
+      background-color: #2acd35;
+      color: #fff; }
+  .nav-pills > li.active:hover > a, .nav-pills > li.active > a {
+    background-color: #2acd35;
+    color: #fff; }
+
 .comment-list {
   padding: 0;
   margin-top: 20px;
