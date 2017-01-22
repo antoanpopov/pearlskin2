@@ -18,7 +18,7 @@ class PriceList extends Model
         'procedure_id',
         'price_list_category_id',
         'is_visible',
-        'use_procedure_price',
+        'show_procedure_price',
         // Translatable fields
         'title',
     ];

@@ -2,7 +2,7 @@
 
 @section('content-header')
     <h1>
-        {{ trans('pearlskin::procedures.title.create procedure') }}
+        {{ trans('pearlskin::priceLists.title.create') }}
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
@@ -26,23 +26,42 @@
                     @foreach (LaravelLocalization::getSupportedLocales() as $locale => $language)
                         <?php $i++; ?>
                         <div class="tab-pane {{ locale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
-                            @include('pearlskin::admin.procedures.partials.create-fields', ['lang' => $locale])
+                            @include('pearlskin::admin.priceLists.partials.create-fields', ['lang' => $locale])
                         </div>
                     @endforeach
-                        <div class="col-xs-12 col-md-6">
-                            {!! Form::normalInput('price', trans('pearlskin::common.form.price'), $errors) !!}
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12">
+                                <div class="form-group dropdown">
+                                    <label for="price_list_category"><?= trans('pearlskin::common.form.category')?></label>
+                                    <select class="form-control"
+                                            name="price_list_category">
+                                        @foreach($priceListCategories as $priceListCategory)
+                                            <option value="{{ $priceListCategory->id }}">{{ $priceListCategory->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <div class="form-group dropdown">
+                                    <label for="procedure_id"><?= trans('pearlskin::common.form.procedure')?></label>
+                                    <select class="form-control"
+                                            name="procedure_id">
+                                        @foreach($procedures as $procedure)
+                                            <option value="{{ $procedure->id }}">{{ $procedure->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-4">
+                                {!! Form::normalInput('price', trans('pearlskin::common.form.price'), $errors) !!}
+                            </div>
+                            <div class="col-sm-12 col-md-4">
+                                {!! Form::normalCheckbox('is_visible', trans('pearlskin::common.statuses.is visible'), $errors) !!}
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                {!! Form::normalCheckbox('show_procedure_price', trans('pearlskin::common.statuses.show procedure price'), $errors) !!}
+                            </div>
                         </div>
-                        <div class="col-xs-12 col-md-6">
-                            {!! Form::normalCheckbox('is_visible', trans('pearlskin::common.form.is visible'), $errors) !!}
-                        </div>
-                        @mediaSingle('featured_image')
-                        @mediaMultiple('gallery')
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.create') }}</button>
-                        <button class="btn btn-default btn-flat" name="button" type="reset">{{ trans('core::core.button.reset') }}</button>
-                        <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.pearlskin.procedure.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
-                    </div>
-                </div>
             </div> {{-- end nav-tabs-custom --}}
         </div>
     </div>

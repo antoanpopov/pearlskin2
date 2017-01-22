@@ -20,7 +20,7 @@ class CreatePearlskinPriceListTable extends Migration
             $table->integer('price_list_category_id')->unsigned()->nullable();
             $table->integer('procedure_id')->unsigned()->nullable();
             $table->boolean('is_visible')->default(1);
-            $table->boolean('use_procedure_price')->default(1);
+            $table->boolean('show_procedure_price')->default(1);
             $table->integer('sort_order');
             $table->decimal('price', 10, 2)->nullable();
             $table->timestamps();

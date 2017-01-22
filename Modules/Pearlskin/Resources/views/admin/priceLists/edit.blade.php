@@ -2,15 +2,15 @@
 
 @section('content-header')
     <h1>
-        {{ trans('pearlskin::procedures.title.edit procedure') }}
+        {{ trans('pearlskin::priceLists.title.edit') }}
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard.index') }}"><i
                         class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
         <li>
-            <a href="{{ route('admin.pearlskin.procedure.index') }}">{{ trans('pearlskin::procedures.title.procedures') }}</a>
+            <a href="{{ route('admin.pearlskin.priceLists.index') }}">{{ trans('pearlskin::priceLists.title.module') }}</a>
         </li>
-        <li class="active">{{ trans('pearlskin::procedures.title.edit procedure') }}</li>
+        <li class="active">{{ trans('pearlskin::priceLists.title.edit') }}</li>
     </ol>
 @stop
 
@@ -19,7 +19,7 @@
 @stop
 
 @section('content')
-    {!! Form::open(['route' => ['admin.pearlskin.procedure.update', $procedure->id], 'method' => 'put']) !!}
+    {!! Form::open(['route' => ['admin.pearlskin.priceLists.update', $priceList->id], 'method' => 'put']) !!}
     <div class="row">
         <div class="col-md-6 col-xs-12">
             <div class="nav-tabs-custom">
@@ -29,33 +29,30 @@
                     @foreach (LaravelLocalization::getSupportedLocales() as $locale => $language)
                         <?php $i++; ?>
                         <div class="tab-pane {{ locale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
-                            @include('pearlskin::admin.procedures.partials.edit-fields', ['lang' => $locale])
+                            @include('pearlskin::admin.priceLists.partials.edit-fields', ['lang' => $locale])
                         </div>
                     @endforeach
                     <div class="row">
-                        <div class="col-sm-12 col-md-4">
+                        <div class="col-sm-12 col-md-6">
                             <div class="form-group">
-                                {!! Form::label("procedure_cat_id", trans('pearlskin::common.form.procedure category')) !!}
-                                <select name="procedure_cat_id" id="procedure_cat_id" class="form-control">
-                                    @foreach ($procedureCategories as $procedureCategory)
-                                        <option value="{{ $procedureCategory->id }}" {{ old('procedure_cat_id', $procedure->procedure_cat_id) == $procedureCategory->id ? 'selected' : '' }}>
-                                            {{ $procedureCategory->title }}
+                                {!! Form::label("price_list_category_id", trans('pearlskin::common.form.category')) !!}
+                                <select name="price_list_category_id" id="price_list_category_id" class="form-control">
+                                    @foreach ($priceListCategories as $priceListCategory)
+                                        <option value="{{ $priceListCategory->id }}" {{ old('price_list_category_id', $priceList->price_list_category_id) == $priceListCategory->id ? 'selected' : '' }}>
+                                            {{ $priceListCategory->title }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
-
-                        <div class="col-sm-12 col-md-4">
-                            {!! Form::normalInput('price', trans('pearlskin::common.form.price'), $errors, $procedure) !!}
+                        <div class="col-sm-12 col-md-6">
+                            {!! Form::normalInput('price', trans('pearlskin::common.form.price'), $errors, $priceList) !!}
                         </div>
-                        <div class="col-sm-12 col-md-4">
-                            {!! Form::normalCheckbox('is_visible', trans('pearlskin::common.statuses.is visible'), $errors, $procedure) !!}
+                        <div class="col-sm-12 col-md-6">
+                            {!! Form::normalCheckbox('is_visible', trans('pearlskin::common.statuses.is visible'), $errors, $priceList) !!}
                         </div>
-                        <div class="col-xs-12">
-                            @mediaSingle('featured_image', $procedure)
-
-                            @mediaMultiple('gallery', $procedure)
+                        <div class="col-sm-12 col-md-6">
+                            {!! Form::normalCheckbox('show_procedure_price', trans('pearlskin::common.statuses.show procedure price'), $errors, $priceList) !!}
                         </div>
                     </div>
                 </div>
@@ -65,7 +62,7 @@
                     <button class="btn btn-default btn-flat" name="button"
                             type="reset">{{ trans('core::core.button.reset') }}</button>
                     <a class="btn btn-danger pull-right btn-flat"
-                       href="{{ route('admin.pearlskin.procedure.index')}}"><i
+                       href="{{ route('admin.pearlskin.priceLists.index')}}"><i
                                 class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
                 </div>
             </div>
@@ -89,7 +86,7 @@
         $(document).ready(function () {
             $(document).keypressAction({
                 actions: [
-                    {key: 'b', route: "<?= route('admin.pearlskin.procedure.index') ?>"}
+                    {key: 'b', route: "<?= route('admin.pearlskin.priceLists.index') ?>"}
                 ]
             });
         });

@@ -62,6 +62,7 @@ return [
         'is visible' => 'видимо',
         'not visible' => 'скрито',
         'has percent' => 'има процент',
-        'no percent' => 'няма процент'
+        'no percent' => 'няма процент',
+        'show procedure price' => 'показвай цената на процедурата'
     ],
 ];

@@ -62,6 +62,7 @@ return [
         'is visible' => 'visible',
         'not visible' => 'not visible',
         'has percent' => 'has percent',
-        'no percent' => 'no percent'
+        'no percent' => 'no percent',
+        'show procedure price' => 'show procedure price'
     ],
 ];

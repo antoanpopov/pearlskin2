@@ -16,15 +16,22 @@ class PriceListController extends AdminBaseController
      */
     private $priceListCategoryRepository;
 
+    /**
+     * @var Repositories\ProcedureRepository
+     */
+    private $procedureRepository;
+
     public function __construct(
         Repositories\PriceListRepository $priceListRepository,
-        Repositories\PriceListCategoryRepository $priceListCategoryRepository
+        Repositories\PriceListCategoryRepository $priceListCategoryRepository,
+        Repositories\ProcedureRepository $procedureRepository
     )
     {
         parent::__construct();
 
         $this->priceListRepository = $priceListRepository;
         $this->priceListCategoryRepository = $priceListCategoryRepository;
+        $this->procedureRepository = $procedureRepository;
     }
 
 
@@ -39,7 +46,8 @@ class PriceListController extends AdminBaseController
     public function create()
     {
         $priceListCategories = $this->priceListCategoryRepository->all();
-        return view('pearlskin::admin.priceLists.create')->with(compact('priceListCategories'));
+        $procedures = $this->procedureRepository->all();
+        return view('pearlskin::admin.priceLists.create')->with(compact('priceListCategories', 'procedures'));
     }
 
     /**
