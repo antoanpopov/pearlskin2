@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Builder;
 
 class EloquentPriceListCategoryRepository extends EloquentBaseRepository implements Repositories\PriceListCategoryRepository
 {
+
+    public function allWithPriceLists()
+    {
+        $this->model->with('procedures')->get();
+    }
+
     /**
      * @param $slug
      * @param $locale

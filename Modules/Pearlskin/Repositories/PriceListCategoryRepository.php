@@ -5,6 +5,11 @@ use Modules\Core\Repositories\BaseRepository;
 interface PriceListCategoryRepository extends BaseRepository
 {
     /**
+     * @return mixed
+     */
+    public function allWithPriceLists();
+
+    /**
      * @param $slug
      * @param $locale
      * @return object

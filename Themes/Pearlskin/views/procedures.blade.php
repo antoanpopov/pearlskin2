@@ -47,10 +47,10 @@
                                 @endif
                             </div>
                             <div class="thumbnail-caption">
-                                <div class="thumbnail-bump"></div>
-                                <div class="thumbnail-icon">
-                                    <i class="fa fa-cog"></i>
-                                </div>
+                                {{--<div class="thumbnail-bump"></div>--}}
+                                {{--<div class="thumbnail-icon">--}}
+                                {{--<i class="fa fa-cog"></i>--}}
+                                {{--</div>--}}
                                 <h5 class="thumbnail-title">
                                     {{ $procedure->title }}
                                 </h5>
@@ -76,12 +76,14 @@
                     grid.isotope({filter: filterParameter});
                 })
 
-                $('.nav-pills li').click(function(){
+                $('.nav-pills li').click(function () {
                     $('.nav-pills li').removeClass('active');
                     $(this).addClass('active');
                 });
             </script>
-            {!! $procedures->render() !!}
+            <div class="text-center">
+                {!! $procedures->render() !!}
+            </div>
         </div>
     </div>
 @stop

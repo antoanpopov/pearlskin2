@@ -8,7 +8,7 @@
                     <img src="{{ Imagy::getThumbnail($post->files()->where('zone', 'thumbnail')->get()[0]->path, 'mediumThumb') }}"
                          alt="{{ $post->title }}"/>
                 @else
-                    <img src=""
+                    <img src="{{asset('assets/img/default_image.jpg')}}"
                          alt="{{ $post->title }}"/>
                 @endif
             </a>

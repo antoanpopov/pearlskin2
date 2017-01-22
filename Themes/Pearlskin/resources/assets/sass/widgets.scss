@@ -2,6 +2,7 @@
 .widget-heading {
   font-family: $font-family-headings;
 }
+
 .widget {
 
   > ul {
@@ -10,6 +11,17 @@
 
     > li {
       margin-top: 15px;
+      border: 1px solid #f1f1f1;
+      box-shadow: 0 0 10px -2px #f1f1f1;
+      -webkit-transition: box-shadow .3s ease .15s;
+      -moz-transition: margin-bottom .3s ease .15s;
+      -o-transition: margin-bottom .3s ease .15s;
+      -ms-transition: margin-bottom .3s ease .15s;
+      transition: box-shadow .3s ease .15s;
+      &:hover {
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px -2px #ccc;
+      }
     }
   }
 
@@ -26,6 +38,7 @@
     line-height: 20px;
     color: #888888;
     font-size: 14px;
+    padding: 5px 10px;
   }
 
   .widget-thumbnail {
@@ -48,7 +61,7 @@
     > .thumbnail-icon {
       font-size: 25px;
       position: absolute;
-      left: 0;
+      left: 6px;
       bottom: 0;
       color: $color-primary;
     }

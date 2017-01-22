@@ -68,6 +68,7 @@ class PearlskinServiceProvider extends ServiceProvider
         view()->composer('widgets.doctors', Composers\DoctorComposer::class);
         view()->composer('widgets.procedures', Composers\ProceduresComposer::class);
         view()->composer('widgets.blog.posts', LatestPostsComposer::class);
+        view()->composer('widgets.priceListCategories', Composers\PriceListCategoriesComposer::class);
     }
 
     public function boot()

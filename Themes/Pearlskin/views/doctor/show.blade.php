@@ -15,7 +15,7 @@
             <div class="col-md-9 col-xs-12">
                 @include('partials.subpage-title',array(
                     'title' => $doctor->names,
-                    'image' => $doctor->files()->where('zone', 'image')->get()[0]->path->getUrl(),
+                    'image' => $doctor->files()->where('zone', 'featured_image')->get()[0]->path->getUrl(),
                 ))
                 {!! $doctor->description !!}
             </div>

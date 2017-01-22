@@ -15,20 +15,7 @@
     <div class="container content">
         <div class="col-xs-12">
             {!! $page->body !!}
-            <div class="table table-striped">
-                @foreach($priceListCategories as $priceListCategory)
-                    <tr>
-                        <td>{{$priceListCategory->title}}</td>
-                        <td></td>
-                    </tr>
-                    @foreach($priceListCategory->priceLists as $priceList)
-                        <tr>
-                            <td>{{ $priceList->title }}</td>
-                            <td>{{ $priceList->price }}</td>
-                        </tr>
-                    @endforeach
-                @endforeach
-            </div>
+            @include('widgets.priceListCategories')
         </div>
     </div>
 @stop

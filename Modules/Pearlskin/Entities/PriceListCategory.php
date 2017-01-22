@@ -3,6 +3,7 @@
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Pearlskin\Traits\AuthorAndEditorTrait;
+use Modules\Pearlskin\Entities;
 
 class PriceListCategory extends Model
 {
@@ -25,4 +26,9 @@ class PriceListCategory extends Model
     ];
 
     protected $dates = ['created_at', 'updated_at'];
+
+    public function priceLists()
+    {
+        return $this->hasMany(Entities\PriceList::class);
+    }
 }

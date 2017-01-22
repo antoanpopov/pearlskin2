@@ -13,7 +13,7 @@
                         <h1 class="page-title-title">{{ $title }}</h1>
                     </div>
                 </div>
-                <div class="page-title-bump"></div>
+                {{--<div class="page-title-bump"></div>--}}
             </div>
     </section>
 @endif

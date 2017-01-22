@@ -12,6 +12,16 @@ class CachePriceListCategoryDecorator extends BaseCacheDecorator implements Repo
         $this->repository = $repository;
     }
 
+    public function allWithPriceLists()
+    {
+        return $this->cache
+            ->tags($this->entityName, 'global')
+            ->remember("{$this->locale}.{$this->entityName}.allWithPriceLists", $this->cacheTime,
+                function () {
+                    return $this->repository->allWithPriceLists();
+                }
+            );
+    }
 
     public function findByTitleInLocale($slug, $locale)
     {
