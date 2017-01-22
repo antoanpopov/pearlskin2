@@ -73,7 +73,8 @@ class PriceListController extends AdminBaseController
     public function edit(Entities\PriceList $priceList)
     {
         $priceListCategories = $this->priceListCategoryRepository->all();
-        return view('pearlskin::admin.priceLists.edit', compact('priceList', 'priceListCategories'));
+        $procedures = $this->procedureRepository->all();
+        return view('pearlskin::admin.priceLists.edit', compact('priceList', 'priceListCategories', 'procedures'));
     }
 
     /**

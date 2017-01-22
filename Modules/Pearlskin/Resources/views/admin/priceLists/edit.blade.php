@@ -32,27 +32,43 @@
                             @include('pearlskin::admin.priceLists.partials.edit-fields', ['lang' => $locale])
                         </div>
                     @endforeach
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                {!! Form::label("price_list_category_id", trans('pearlskin::common.form.category')) !!}
-                                <select name="price_list_category_id" id="price_list_category_id" class="form-control">
-                                    @foreach ($priceListCategories as $priceListCategory)
-                                        <option value="{{ $priceListCategory->id }}" {{ old('price_list_category_id', $priceList->price_list_category_id) == $priceListCategory->id ? 'selected' : '' }}>
-                                            {{ $priceListCategory->title }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-4">
+                                <div class="form-group">
+                                    {!! Form::label("price_list_category_id", trans('pearlskin::common.form.category')) !!}
+                                    <select name="price_list_category_id" id="price_list_category_id"
+                                            class="form-control">
+                                        @foreach ($priceListCategories as $priceListCategory)
+                                            <option value="{{ $priceListCategory->id }}" {{ old('price_list_category_id', $priceList->price_list_category_id) == $priceListCategory->id ? 'selected' : '' }}>
+                                                {{ $priceListCategory->title }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            {!! Form::normalInput('price', trans('pearlskin::common.form.price'), $errors, $priceList) !!}
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            {!! Form::normalCheckbox('is_visible', trans('pearlskin::common.statuses.is visible'), $errors, $priceList) !!}
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            {!! Form::normalCheckbox('show_procedure_price', trans('pearlskin::common.statuses.show procedure price'), $errors, $priceList) !!}
+                            <div class="col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    {!! Form::label("procedure_id", trans('pearlskin::common.form.procedure')) !!}
+                                    <select name="doctor_id" id="category" class="form-control">
+                                        <option value="">---{{ trans('pearlskin::common.none') }} ---</option>
+                                        @foreach ($procedures as $procedure)
+                                            <option value="{{ $procedure->id }}" {{ old('procedure_id', $priceList->procedure_id) == $procedure->id ? 'selected' : '' }}>
+                                                {{ $procedure->names }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-4">
+                                {!! Form::normalInput('price', trans('pearlskin::common.form.price'), $errors, $priceList) !!}
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                {!! Form::normalCheckbox('is_visible', trans('pearlskin::common.statuses.is visible'), $errors, $priceList) !!}
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                {!! Form::normalCheckbox('show_procedure_price', trans('pearlskin::common.statuses.show procedure price'), $errors, $priceList) !!}
+                            </div>
                         </div>
                     </div>
                 </div>
