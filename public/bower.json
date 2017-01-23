@@ -1,0 +1,20 @@
+{
+  "name": "public",
+  "homepage": "https://github.com/antoanpopov/pearlskin2",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "animate-scroll": "mpalpha/animate-scroll",
+    "isotope": "^3.0.1",
+    "lightbox2": "^2.9.0",
+    "skrollr": "scrollr#^0.6.30"
+  }
+}
