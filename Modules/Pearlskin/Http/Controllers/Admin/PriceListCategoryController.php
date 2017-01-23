@@ -44,8 +44,8 @@ class PriceListCategoryController extends AdminBaseController
     public function store(Request $request)
     {
         $requestData = $request->all();
-        $request->all()['created_by_user_id']= $request->user()->id;
-        $request->all()['updated_by_user_id']= $request->user()->id;
+        $requestData['created_by_user_id'] = $request->user()->id;
+
         $this->priceListCategoryRepository->create($requestData);
 
         flash()->success(trans('core::core.messages.resource created', ['name' => trans('pearlskin::priceLists.title.module')]));
