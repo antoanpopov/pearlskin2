@@ -6,13 +6,13 @@ hostname: pearlskin2
 name: pearlskin2
 provider: virtualbox
 
-authorize: ~/.ssh/id_rsa.pub
+authorize: ~/.ssh/github.pub
 
 keys:
-    - ~/.ssh/id_rsa
+    - ~/.ssh/github
 
 folders:
-    - map: "D:/Development/php/pearlskin2"
+    - map: "C:/Development/projects/pearlskin2"
       to: "/home/vagrant/pearlskin2"
       type: "nfs"
       mount_options: ['nolock,vers=3,udp,noatime']
