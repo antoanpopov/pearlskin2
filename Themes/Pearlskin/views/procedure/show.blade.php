@@ -9,9 +9,13 @@
 @stop
 
 @section('content')
+    @php
+        $imagesCount = $procedure->files()->where('zone', 'featured_image')->get()->count();
+        $coverImage = ($imagesCount > 0)? $procedure->files()->where('zone', 'featured_image')->get()[0]->path->getUrl() : null;
+    @endphp
     @include('partials.page-title',array(
         'title' => $procedure->title,
-        'image' => $procedure->files()->where('zone', 'featured_image')->get()[0]->path->getUrl()
+        'image' => $coverImage
     ))
     <div class="container content">
         <div class="row">

@@ -1,6 +1,7 @@
 @if($title)
     <section class="page-title">
-        @if(isset($image))
+        @if(isset($image) && notNullValue($image))
+            {{dump($image)}}
             <div class="page-title-inner parallax-window"
                  data-parallax="scroll"
                  data-image-src="{{$image}}">
